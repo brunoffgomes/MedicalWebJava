@@ -50,8 +50,8 @@
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	  <beans:property name="dataSource" ref="dataSource" />
-	  <beans:property name="typeAliasesPackage" value="com.pagp.medicalweb.dao.models"/>
-	  <beans:property name="mapperLocations" value="classpath*:com/pagp/medicalweb/dao/mappers/*.xml" />
+	  <beans:property name="typeAliasesPackage" value="com.pagp.medicalweb.db.entity"/>
+	  <beans:property name="mapperLocations" value="classpath*:com/pagp/medicalweb/db/mappers/**/*.xml" />
 	</beans:bean>
 	
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -59,7 +59,7 @@
 	</beans:bean>
 	
 	<beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  		<beans:property name="basePackage" value="com.pagp.medicalweb.dao.mappers" />
+  		<beans:property name="basePackage" value="com.pagp.medicalweb.db.mappers" />
 	</beans:bean>
 	
 	

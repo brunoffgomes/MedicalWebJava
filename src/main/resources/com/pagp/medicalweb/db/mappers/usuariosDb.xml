@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pagp.medicalweb.db.mappers.UsuariosDb">
+	<!--    result maps     -->
+	<resultMap id="usuario" type="com.pagp.medicalweb.db.entity.UsuarioEntity" >
+		<id column="id_usuario" property="idUsuario"  />	
+	</resultMap>
+
+	<select id="getUsuarioByEmail" resultType="UsuarioEntity" parameterType="String">
+		SELECT * FROM
+			usuario
+		WHERE
+			email = #{value};
+	</select>
+</mapper>
