@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -13,7 +15,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -22,7 +24,43 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.pagp.medicalweb" />
+	<cors>
+		<mapping path="/**" />
+	</cors>
 	
+	<beans:bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>classpath:application.properties</beans:value>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <beans:property name="driverClassName" value="${jdbc.driverClassName}" />
+	  <beans:property name="url" value="${jdbc.url}" />
+	  <beans:property name="username" value="${jdbc.username}" />
+	  <beans:property name="password" value="${jdbc.password}" />
+	</beans:bean>
+	
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	  <beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	  <beans:property name="dataSource" ref="dataSource" />
+	  <beans:property name="typeAliasesPackage" value="com.pagp.medicalweb.dao.models"/>
+	  <beans:property name="mapperLocations" value="classpath*:com/pagp/medicalweb/dao/mappers/*.xml" />
+	</beans:bean>
+	
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	  <beans:constructor-arg index="0" ref="sqlSessionFactory" />
+	</beans:bean>
+	
+	<beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  		<beans:property name="basePackage" value="com.pagp.medicalweb.dao.mappers" />
+	</beans:bean>
 	
 	
 </beans:beans>
