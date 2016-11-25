@@ -33,4 +33,9 @@ public class AuthController {
 		return usuariosDao.getUsuarioByEmail("ricrrojas@gmail.com");
 	}
 
+	@RequestMapping(value = "/secure/user", method = RequestMethod.GET)
+	public UsuarioEntity secure() {
+		return usuariosDao.getUsuarioByEmail("ricrrojas@gmail.com");
+	}
+
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <global-method-security pre-post-annotations="enabled" /> 
+    
+    
+    <bean:bean id="jwtAuthenticationSuccessHandler" class="com.pagp.medicalweb.web.core.JwtAuthenticationSuccessHandler">
+    </bean:bean>
+    <bean:bean id="restAuthenticationEntryPoint" class="com.pagp.medicalweb.web.core.RestAuthenticationEntryPoint">
+    </bean:bean>
+    <bean:bean id="jwtUtil" class="com.pagp.medicalweb.web.core.JwtUtil">
+    </bean:bean>
+    <bean:bean id="jwtAuthenticationProvider" class="com.pagp.medicalweb.web.core.JwtAuthenticationProvider">
+    </bean:bean>
+     <bean:bean id="jwtAuthenticationFailureHandler" class="com.pagp.medicalweb.web.core.JwtAuthenticationFailureHandler">
+    </bean:bean>
+    
+    
+    <bean:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<bean:property name="location">
+			<bean:value>classpath:application.properties</bean:value>
+		</bean:property>
+	</bean:bean>
+    
+    <http pattern="/api/login" security="none"/>  
+    <http pattern="/api/signup" security="none"/>
+
+    <http pattern="/**/secure/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
+        <csrf disabled="true"/> 
+        <custom-filter before="FORM_LOGIN_FILTER" ref="jwtAuthenticationFilter"/> 
+    </http>
+    
+    <bean:bean id="jwtAuthenticationFilter" class="com.pagp.medicalweb.web.core.JwtAuthenticationFilter"> 
+        <bean:property name="authenticationManager" ref="authenticationManager" />
+        <bean:property name="authenticationSuccessHandler" ref="jwtAuthenticationSuccessHandler" /> 
+        <bean:property name="authenticationFailureHandler" ref="jwtAuthenticationFailureHandler"/>
+    </bean:bean>
+    
+   
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="jwtAuthenticationProvider" /> 
+    </authentication-manager>
+    
+</bean:beans>
