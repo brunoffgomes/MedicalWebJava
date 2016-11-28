@@ -14,6 +14,7 @@ public class UsuarioBaseFormDto implements Serializable{
 	private String apellido;
 	private String email;
 	private String password;
+	private TipoUsuarioEnum tipo;
 	
 
 	public int getIdUser() {
@@ -45,6 +46,12 @@ public class UsuarioBaseFormDto implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public TipoUsuarioEnum getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoUsuarioEnum tipo) {
+		this.tipo = tipo;
 	}
 	
 }

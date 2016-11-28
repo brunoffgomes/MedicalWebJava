@@ -14,8 +14,9 @@ public class RegistroServices {
 	private UsuariosDao usuariosDao;
 
 	public AdministradorFormDto crearAdministrador(AdministradorFormDto administradorFormDto){
-		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		
+		
+		UsuarioEntity usuarioEntity = new UsuarioEntity();
 		usuariosDao.crearUsuario(usuarioEntity);
 		
 		return administradorFormDto;
