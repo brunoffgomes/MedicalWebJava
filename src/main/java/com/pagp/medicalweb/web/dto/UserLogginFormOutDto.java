@@ -2,6 +2,8 @@ package com.pagp.medicalweb.web.dto;
 
 import java.util.Date;
 
+import com.pagp.medicalweb.web.enums.UserLoginEstatusEnum;
+
 public class UserLogginFormOutDto extends BaseFormDto{
 
 	/**
@@ -12,6 +14,7 @@ public class UserLogginFormOutDto extends BaseFormDto{
 	private String token;
 	private Date expires;
 	private String tipoUsuario;
+	private UserLoginEstatusEnum estatus;
 	
 	public String getToken() {
 		return token;
@@ -31,5 +34,13 @@ public class UserLogginFormOutDto extends BaseFormDto{
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+	public UserLoginEstatusEnum getEstatus() {
+		return estatus;
+	}
+	public void setEstatus(UserLoginEstatusEnum estatus) {
+		this.estatus = estatus;
+	}
+	
+	
 }
 

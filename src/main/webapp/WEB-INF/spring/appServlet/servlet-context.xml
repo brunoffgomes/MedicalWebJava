@@ -28,7 +28,7 @@
 		<mapping path="/**" />
 	</cors>
 	
-	<beans:bean
+	<beans:bean id="appProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<beans:property name="location">
 			<beans:value>classpath:application.properties</beans:value>

@@ -1,4 +1,4 @@
-package com.pagp.medicalweb;
+package com.pagp.medicalweb.web;
 
 import java.text.DateFormat;
 import java.util.Date;

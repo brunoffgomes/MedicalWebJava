@@ -1,6 +1,7 @@
 package com.pagp.medicalweb.web.core;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.pagp.medicalweb.web.core.dto.JwtUserDto;
 
@@ -9,6 +10,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class JwtUtil {
 
 	@Value("${jwt.secret}")
