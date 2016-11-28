@@ -17,9 +17,6 @@ import com.pagp.medicalweb.web.dto.UserLogginFormOutDto;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-
-	@Autowired
-	private UsuariosDao usuariosDao;
 	
 	@Autowired
 	private AuthServices authServices;
@@ -38,16 +35,6 @@ public class AuthController {
 		userLogginFormOutDto.setEstatus(userLoginServicesOutDto.getEstatus());
 		
 		return userLogginFormOutDto;
-	}
-
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public UsuarioEntity loggin() {
-		return usuariosDao.getUsuarioByEmail("ricrrojas@gmail.com");
-	}
-
-	@RequestMapping(value = "/secure/user", method = RequestMethod.GET)
-	public UsuarioEntity secure() {
-		return usuariosDao.getUsuarioByEmail("ricrrojas@gmail.com");
 	}
 
 }

@@ -5,4 +5,6 @@ import com.pagp.medicalweb.db.entity.UsuarioEntity;
 public interface UsuariosDb {
 
 	UsuarioEntity getUsuarioByEmail(String email);
+	UsuarioEntity insertUser(UsuarioEntity usuarioEntity);
+
 }

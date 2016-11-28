@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pagp.medicalweb.db.mappers.RegistroDb">
+
+
+	<insert id='insertAdministrador' parameterType='AdministradorEntity' useGeneratedKeys='true' keyProperty='idAdministrador'>
+	   INSERT INTO administrador_ce
+	   	(idAdministrador, cargo)
+	    VALUES(#{idAdministrador}, #{cargo})
+ 	 </insert>
+ 	 
+ 	 
+ 	 <insert id='insertEntidad' parameterType='EntidadEntity' useGeneratedKeys='true' keyProperty='idEntidad'>
+	   INSERT INTO entidad
+	   	(idEntidad, nombre, calle, numero, cp, telefono, rfc,tipo)
+	    VALUES(#{idEntidad}, #{nombre}, #{calle}, #{numero}, #{cp}, #{telefono}, #{rfc},#{tipo}) 
+ 	 </insert>
+ 	 
+ 	 <insert id='agregarModuloEntidad' parameterType='ModuloContratadoEntity' useGeneratedKeys='true' keyProperty='idContrato'>
+	   INSERT INTO moduloConstratados
+	   	(idContrato, idEntidad, idModulo, precio, fInicio, fFinal )
+	    VALUES(#{idContrato}, #{idEntidad}, #{idModulo}, #{precio}, #{fInicio}, #{fFinal})
+ 	 </insert>
+ 	 
+ 	 
+
+</mapper>
