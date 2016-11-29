@@ -1,7 +1,5 @@
 package com.pagp.medicalweb.web.dto.registro;
 
 public enum TipoEntidadEnum {
-	CLINICA,
-	HOSPITAL,
-	SANATORIO,
+	SANATORIO, CLINICA, HOSPITAL,
 }

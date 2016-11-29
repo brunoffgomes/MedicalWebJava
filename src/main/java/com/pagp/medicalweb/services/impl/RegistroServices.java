@@ -10,6 +10,7 @@ import com.pagp.medicalweb.db.entity.AdministradorEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.web.dto.core.TipoUsuarioEnum;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
+import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 
 @Service
 @Transactional
@@ -47,7 +48,8 @@ public class RegistroServices {
 		return administradorFormDto;
 	}
 
-	public void crearClinica() {
+	public EntidadMedicaFormDto crearClinica(EntidadMedicaFormDto entidadMedicaFormDto) {
 
+		return entidadMedicaFormDto;
 	}
 }

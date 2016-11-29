@@ -26,6 +26,7 @@ public class RegistroController {
 
 	@RequestMapping(value = "/registroClinica", method = RequestMethod.POST)
 	public EntidadMedicaFormDto registroClinica(@RequestBody EntidadMedicaFormDto entidadMedicaFormDto) {
+		registroServices.crearClinica(entidadMedicaFormDto);
 		return entidadMedicaFormDto;
 	}
 
