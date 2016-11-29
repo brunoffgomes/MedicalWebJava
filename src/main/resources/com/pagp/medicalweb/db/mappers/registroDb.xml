@@ -4,10 +4,10 @@
 <mapper namespace="com.pagp.medicalweb.db.mappers.RegistroDb">
 
 
-	<insert id='insertAdministrador' parameterType='AdministradorEntity' useGeneratedKeys='true' keyProperty='idAdministrador'>
-	   INSERT INTO administrador_ce
-	   	(idAdministrador, cargo)
-	    VALUES(#{idAdministrador}, #{cargo})
+	<insert id='insertAdministrador' parameterType='AdministradorEntity' keyProperty='id_administrador'>
+	   INSERT INTO administradores 
+	   	(id_administrador, cargo)
+	    VALUES(#{id_administrador}, #{cargo})
  	 </insert>
  	 
  	 

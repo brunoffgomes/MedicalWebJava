@@ -4,9 +4,10 @@ angular.module("app.services",[]);
 angular.module("app.directives",[]);
 
 angular.module("medicalWeb",[
-,"app.controllers",'app.constants',"app.routes","app.services","app.directives"
+,"app.controllers",'app.constants',"app.routes","app.services","app.directives","ngMaterial"
+,"angular-loading-bar"
 ]).config(['$httpProvider', function($httpProvider) {
-      $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.useXDomain = true;
     $httpProvider.defaults.withCredentials = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $httpProvider.defaults.headers.common["Accept"] = "application/json";
@@ -28,5 +29,5 @@ function run($rootScope, $location, $http) {
         $rootScope.$on("logged", function(){
           if(!$rootScope.logged)
             $location.path('/');
-        });
-      }
+          });
+        }

@@ -14,29 +14,32 @@ import com.pagp.medicalweb.web.enums.UserLoginEstatusEnum;
 
 @Service
 public class AuthServicesImpl implements AuthServices {
-	
+
 	@Autowired
 	private UsuariosDao usuariosDao;
-	
+
 	@Autowired
 	private JwtUtil jwtUtil;
-	
+
 	@Override
-	public UserLoginServicesOutDto login(UserLoginServicesInDto user){
+	public UserLoginServicesOutDto login(UserLoginServicesInDto user) {
 		UsuarioEntity usuarioEntity = usuariosDao.getUsuarioByEmail(user.getUsername());
 		UserLoginServicesOutDto userLoginServicesOutDto = new UserLoginServicesOutDto();
-		if(usuarioEntity == null){
+		if (usuarioEntity == null) {
 			userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.INEXISTENTE);
-		}
-		else{
-			
-			JwtUserDto jwtUserDto =  new JwtUserDto();
-			String token = jwtUtil.generateToken(jwtUserDto);
-			userLoginServicesOutDto.setToken(token);
-			userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.ACTIVO);
+		} else {
+
+			if (usuarioEntity.getPassword().equals(user.getPassword())) {
+				JwtUserDto jwtUserDto = new JwtUserDto();
+				String token = jwtUtil.generateToken(jwtUserDto);
+				userLoginServicesOutDto.setToken(token);
+				userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.ACTIVO);
+			} else {
+				userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.BAD_CREDENTIAL);
+			}
 
 		}
 		return userLoginServicesOutDto;
 	}
-		
+
 }

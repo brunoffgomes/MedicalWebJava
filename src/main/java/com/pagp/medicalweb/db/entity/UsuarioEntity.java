@@ -1,28 +1,24 @@
 package com.pagp.medicalweb.db.entity;
 
+import java.util.Date;
+
 public class UsuarioEntity {
 
-	private int idUsuario;
+	private int id_usuario;
 	private String nombre;
-	private String apellido;
+	private String apPaterno;
+	private String apMaterno;
 	private String email;
 	private String password;
 	private String tipo;
+	private Date fechaNacimiento;
 
-	public String getEmail() {
-		return email;
+	public int getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getNombre() {
@@ -33,12 +29,28 @@ public class UsuarioEntity {
 		this.nombre = nombre;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getApPaterno() {
+		return apPaterno;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApPaterno(String apPaterno) {
+		this.apPaterno = apPaterno;
+	}
+
+	public String getApMaterno() {
+		return apMaterno;
+	}
+
+	public void setApMaterno(String apMaterno) {
+		this.apMaterno = apMaterno;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -55,6 +67,14 @@ public class UsuarioEntity {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 }

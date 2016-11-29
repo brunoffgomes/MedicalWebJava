@@ -6,10 +6,10 @@ import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 
 public interface RegistroDb {
 
-	EntidadEntity insertEntidad(EntidadEntity entidadEntity);
-	
-	ModuloContratadoEntity agregarModuloEntidad(ModuloContratadoEntity mContratadoEntity);
-	
-	AdministradorEntity insertAdministrador(AdministradorEntity administradorEntity);
-	
+	void insertEntidad(EntidadEntity entidadEntity);
+
+	void agregarModuloEntidad(ModuloContratadoEntity mContratadoEntity);
+
+	void insertAdministrador(AdministradorEntity administradorEntity);
+
 }
