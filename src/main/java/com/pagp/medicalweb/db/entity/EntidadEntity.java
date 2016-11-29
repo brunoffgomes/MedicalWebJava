@@ -10,6 +10,7 @@ public class EntidadEntity {
 	private String rfc;
 	private String telefono;
 	private String tipo;
+	private int idAdministrador;
 	
 	public int getIdEntidad() {
 		return idEntidad;
@@ -58,6 +59,12 @@ public class EntidadEntity {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public int getIdAdministrador() {
+		return idAdministrador;
+	}
+	public void setIdAdministrador(int idAdministrador) {
+		this.idAdministrador = idAdministrador;
 	}
 
 	

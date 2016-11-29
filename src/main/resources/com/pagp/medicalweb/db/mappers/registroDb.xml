@@ -13,11 +13,11 @@
  	 
  	 <insert id='insertEntidad' parameterType='EntidadEntity' useGeneratedKeys='true' keyProperty='idEntidad'>
 	   INSERT INTO entidad
-	   	(idEntidad, nombre, calle, numero, cp, telefono, rfc,tipo)
-	    VALUES(#{idEntidad}, #{nombre}, #{calle}, #{numero}, #{cp}, #{telefono}, #{rfc},#{tipo}) 
+	   	( nombre, calle, numero, cp, telefono, rfc,tipo,idAdministrador )
+	    VALUES( #{nombre}, #{calle}, #{numero}, #{cp}, #{telefono}, #{rfc},#{tipo},#{idAdministrador}) 
  	 </insert>
  	 
- 	 <insert id='agregarModuloEntidad' parameterType='ModuloContratadoEntity' useGeneratedKeys='true' keyProperty='idContrato'>
+ 	 <insert id='insertarModuloContratado' parameterType='ModuloContratadoEntity' useGeneratedKeys='true' keyProperty='idContrato'>
 	   INSERT INTO moduloConstratados
 	   	(idContrato, idEntidad, idModulo, precio, fInicio, fFinal )
 	    VALUES(#{idContrato}, #{idEntidad}, #{idModulo}, #{precio}, #{fInicio}, #{fFinal})

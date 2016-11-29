@@ -8,7 +8,7 @@ public interface RegistroDb {
 
 	void insertEntidad(EntidadEntity entidadEntity);
 
-	void agregarModuloEntidad(ModuloContratadoEntity mContratadoEntity);
+	void insertarModuloContratado(ModuloContratadoEntity moduloContratadoEntity);
 
 	void insertAdministrador(AdministradorEntity administradorEntity);
 

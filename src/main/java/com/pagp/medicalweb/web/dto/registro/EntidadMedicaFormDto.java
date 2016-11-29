@@ -2,6 +2,8 @@ package com.pagp.medicalweb.web.dto.registro;
 
 import java.util.List;
 
+import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
+
 public class EntidadMedicaFormDto {
 
 	private String nombre;
@@ -11,7 +13,7 @@ public class EntidadMedicaFormDto {
 	private String telefono;
 	private String rfc;
 	private TipoEntidadEnum tipo;
-	private List<ModuloDto> modulos;
+	private List<ModuloContratadoEntity> modulos;
 	private AdministradorFormDto administrador;
 
 	public AdministradorFormDto getAdministrador() {
@@ -78,11 +80,11 @@ public class EntidadMedicaFormDto {
 		this.tipo = tipo;
 	}
 
-	public List<ModuloDto> getModulos() {
+	public List<ModuloContratadoEntity> getModulos() {
 		return modulos;
 	}
 
-	public void setModulos(List<ModuloDto> modulos) {
+	public void setModulos(List<ModuloContratadoEntity> modulos) {
 		this.modulos = modulos;
 	}
 }
