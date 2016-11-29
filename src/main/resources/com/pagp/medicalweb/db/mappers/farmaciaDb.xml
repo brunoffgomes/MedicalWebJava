@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.pagp.medicalweb.db.mappers.farmaciaDb">
+<mapper namespace="com.pagp.medicalweb.db.mappers.FarmaciaDb">
 
-	<select id="getMedicamentosByEntidad" resultType="MedicamentoEntity" parameterType="int">
-		SELECT * FROM medicamentos WHERE idEntidad = #{value}
+	<resultMap type="MedicamentoEntity" id="medicamentoMap" autoMapping="true">
+	</resultMap>
+	
+	<select id="getMedicamentosByEntidad" resultType="MedicamentoEntity" parameterType="int" >
+		SELECT * FROM medicamento WHERE idEntidad = #{value}
 	</select>
 	
 	<insert id='insertMedicamento' parameterType='MedicamentoEntity' useGeneratedKeys='true' keyProperty='idMedicamento'>
-	   INSERT INTO medicamentos( nombre, activo, descripcion, cantidad ,idEntidad)
+	   INSERT INTO medicamento( nombre, activo, descripcion, cantidad ,idEntidad)
 	    VALUES(#{nombre}, #{activo}, #{descripcion}, #{cantidad}, #{idEntidad})
  	 </insert>
  	 
  	 <update id='updateMedicamento' parameterType='MedicamentoEntity' >
-		UPDATE medicamentos set
+		UPDATE medicamento set
 		    nombre = #{nombre}, activo = #{activo}, descripcion = #{descripcion}, cantidad = #{cantidad}
 		  where idMedicamento = #{idMedicamento}
  	 </update>

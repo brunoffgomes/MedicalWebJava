@@ -53,10 +53,10 @@ public class RegistroServices {
 	}
 
 	public EntidadMedicaFormDto crearClinica(EntidadMedicaFormDto entidadMedicaFormDto) {
-		
+
 		EntidadEntity entidadEntity = new EntidadEntity();
 		entidadEntity.setCalle(entidadMedicaFormDto.getCalle());
-		entidadEntity.setCp(entidadMedicaFormDto.getCodigoPostal());
+		entidadEntity.setCodigoPostal(entidadMedicaFormDto.getCodigoPostal());
 		entidadEntity.setNombre(entidadMedicaFormDto.getNombre());
 		entidadEntity.setNumero(entidadMedicaFormDto.getNumero());
 		entidadEntity.setRfc(entidadMedicaFormDto.getRfc());
@@ -64,16 +64,18 @@ public class RegistroServices {
 		entidadEntity.setTipo(entidadMedicaFormDto.getTipo().toString());
 		entidadEntity.setIdAdministrador(entidadMedicaFormDto.getAdministrador().getIdUser());
 
-
 		registroDao.guardarEntidad(entidadEntity);
-			
-		List<ModuloContratadoEntity> modulos = entidadMedicaFormDto.getModulos();
-		
-		for(ModuloContratadoEntity modulo :  modulos){
-			modulo.setIdEntidad(entidadEntity.getIdEntidad());
-			registroDao.guardarModuloContratado(modulo);
+
+		if (entidadMedicaFormDto.getModulos() != null) {
+
+			List<ModuloContratadoEntity> modulos = entidadMedicaFormDto.getModulos();
+
+			for (ModuloContratadoEntity modulo : modulos) {
+				modulo.setIdEntidad(entidadEntity.getIdEntidad());
+				registroDao.guardarModuloContratado(modulo);
+			}
 		}
-		
+
 		return entidadMedicaFormDto;
 	}
 }

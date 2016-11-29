@@ -14,6 +14,6 @@ public class HandlerExceptionController {
 	public ResponseEntity<ErrorFormDto> exceptionHandler(Exception ex) {
 		ErrorFormDto error = new ErrorFormDto("Please contact your administrator");
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
-		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.OK);
+		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
