@@ -31,6 +31,9 @@ public class AuthServicesImpl implements AuthServices {
 
 			if (usuarioEntity.getPassword().equals(user.getPassword())) {
 				JwtUserDto jwtUserDto = new JwtUserDto();
+				jwtUserDto.setId((long) usuarioEntity.getId_usuario());
+				jwtUserDto.setUsername(usuarioEntity.getEmail());
+				jwtUserDto.setRole(usuarioEntity.getTipo());
 				String token = jwtUtil.generateToken(jwtUserDto);
 				userLoginServicesOutDto.setToken(token);
 				userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.ACTIVO);

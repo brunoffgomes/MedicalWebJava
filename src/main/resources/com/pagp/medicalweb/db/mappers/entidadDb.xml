@@ -4,8 +4,12 @@
 <mapper namespace="com.pagp.medicalweb.db.mappers.EntidadDb">
 
 	<select id="obtenerEntidades" resultType="EntidadEntity" parameterType="int" >
-		SELECT * FROM entidades WHERE idEntidad = #{value}
+		SELECT * FROM entidades WHERE idAdministrador = #{value}
 	</select>
 	
+	<select id="obtenerModulosEntidadActuales" resultType="ModuloContratadoEntity" parameterType="int" >
+		SELECT * FROM modulosContratados WHERE idEntidad = #{value} 
+		and estatus = 'ACTIVO'
+	</select>
 
 </mapper>

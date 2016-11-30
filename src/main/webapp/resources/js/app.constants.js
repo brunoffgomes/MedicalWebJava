@@ -2,7 +2,7 @@
 angular
     .module('app.constants', [])
     .constant("constants", {
-        "url": "http://localhost:8000",
+        "url": "http://medicalweb.azurewebsites.net",
         "tipoAdministracionMedicamentoEnum": [
           { "value": 0, "text": "Oral"},
           { "value": 1, "text": "Cuteana"},
