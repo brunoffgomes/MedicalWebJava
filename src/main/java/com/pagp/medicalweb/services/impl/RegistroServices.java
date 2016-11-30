@@ -72,6 +72,9 @@ public class RegistroServices {
 
 			for (ModuloContratadoEntity modulo : modulos) {
 				modulo.setIdEntidad(entidadEntity.getIdEntidad());
+				modulo.setFechaFin(entidadMedicaFormDto.getFechaFin());
+				modulo.setFechaInicio(entidadMedicaFormDto.getFechaInicio());
+				modulo.setPrecio(2500);
 				registroDao.guardarModuloContratado(modulo);
 			}
 		}

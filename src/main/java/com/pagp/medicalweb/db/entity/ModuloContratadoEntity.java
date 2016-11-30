@@ -8,44 +8,55 @@ public class ModuloContratadoEntity {
 	private int idModulo;
 	private int idEntidad;
 	private double precio;
-	private Date fInicio;
-	private Date fFinal;
-	
+	private Date fechaInicio;
+	private Date fechaFin;
+
 	public int getIdContrato() {
 		return idContrato;
 	}
+
 	public void setIdContrato(int idContrato) {
 		this.idContrato = idContrato;
 	}
+
 	public int getIdModulo() {
 		return idModulo;
 	}
+
 	public void setIdModulo(int idModulo) {
 		this.idModulo = idModulo;
 	}
+
 	public int getIdEntidad() {
 		return idEntidad;
 	}
+
 	public void setIdEntidad(int idEntidad) {
 		this.idEntidad = idEntidad;
 	}
+
 	public double getPrecio() {
 		return precio;
 	}
+
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	public Date getfInicio() {
-		return fInicio;
+
+	public Date getFechaInicio() {
+		return fechaInicio;
 	}
-	public void setfInicio(Date fInicio) {
-		this.fInicio = fInicio;
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
-	public Date getfFinal() {
-		return fFinal;
+
+	public Date getFechaFin() {
+		return fechaFin;
 	}
-	public void setfFinal(Date fFinal) {
-		this.fFinal = fFinal;
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
-	
+
 }

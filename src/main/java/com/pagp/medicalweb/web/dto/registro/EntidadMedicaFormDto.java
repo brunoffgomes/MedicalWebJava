@@ -1,5 +1,6 @@
 package com.pagp.medicalweb.web.dto.registro;
 
+import java.util.Date;
 import java.util.List;
 
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
@@ -13,6 +14,8 @@ public class EntidadMedicaFormDto {
 	private String telefono;
 	private String rfc;
 	private TipoEntidadEnum tipo;
+	private Date fechaInicio;
+	private Date fechaFin;
 	private List<ModuloContratadoEntity> modulos;
 	private AdministradorFormDto administrador;
 
@@ -86,5 +89,21 @@ public class EntidadMedicaFormDto {
 
 	public void setModulos(List<ModuloContratadoEntity> modulos) {
 		this.modulos = modulos;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 }
