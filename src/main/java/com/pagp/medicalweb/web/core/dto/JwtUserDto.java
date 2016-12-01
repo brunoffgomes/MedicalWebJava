@@ -5,6 +5,7 @@ public class JwtUserDto {
 	private Long id;
 	private String username;
 	private String role;
+	private int idEntidad;
 
 	public Long getId() {
 		return id;
@@ -28,5 +29,13 @@ public class JwtUserDto {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getIdEntidad() {
+		return idEntidad;
+	}
+
+	public void setIdEntidad(int idEntidad) {
+		this.idEntidad = idEntidad;
 	}
 }

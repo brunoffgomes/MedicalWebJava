@@ -9,11 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pagp.medicalweb.dao.RegistroDao;
 import com.pagp.medicalweb.dao.UsuariosDao;
 import com.pagp.medicalweb.db.entity.AdministradorEntity;
+import com.pagp.medicalweb.db.entity.DoctorEntity;
+import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
+import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.web.dto.core.TipoUsuarioEnum;
+import com.pagp.medicalweb.web.dto.core.UsuarioBaseFormDto;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
+import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
+import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 
 @Service
@@ -32,16 +38,7 @@ public class RegistroServices {
 
 	public AdministradorFormDto crearAdministrador(AdministradorFormDto administradorFormDto) {
 
-		UsuarioEntity usuarioEntity = new UsuarioEntity();
-		usuarioEntity.setApPaterno(administradorFormDto.getApPaterno());
-		usuarioEntity.setApMaterno(administradorFormDto.getApMaterno());
-		usuarioEntity.setNombre(administradorFormDto.getNombre());
-		usuarioEntity.setEmail(administradorFormDto.getEmail());
-		usuarioEntity.setFechaNacimiento(administradorFormDto.getFechaNacimiento());
-		usuarioEntity.setPassword(administradorFormDto.getPassword());
-		usuarioEntity.setTipo(TipoUsuarioEnum.ADMINISTRADOR.toString());
-
-		usuariosDao.crearUsuario(usuarioEntity);
+		UsuarioEntity usuarioEntity = crearUsuario(administradorFormDto, TipoUsuarioEnum.ADMINISTRADOR);
 
 		AdministradorEntity administradorEntity = new AdministradorEntity();
 		administradorEntity.setCargo(administradorFormDto.getCargo());
@@ -50,6 +47,38 @@ public class RegistroServices {
 		registroDao.guardarAdministrador(administradorEntity);
 
 		return administradorFormDto;
+	}
+
+	public EnfermeroFormDto crearEnfermero(EnfermeroFormDto enfermeroFormDto) {
+
+		UsuarioEntity usuarioEntity = crearUsuario(enfermeroFormDto, TipoUsuarioEnum.ENFERMERO);
+
+		EnfermeroEntity enfermeroEntity = new EnfermeroEntity();
+		enfermeroEntity.setIdEnfermero(usuarioEntity.getId_usuario());
+
+		registroDao.guardarEnfermero(enfermeroEntity);
+
+		return enfermeroFormDto;
+	}
+
+	public DoctorFormDto crearDoctor(DoctorFormDto doctorFormDto) {
+
+		UsuarioEntity usuarioEntity = crearUsuario(doctorFormDto, TipoUsuarioEnum.DOCTOR);
+
+		DoctorEntity doctorEntity = new DoctorEntity();
+		doctorEntity.setIdDoctor(usuarioEntity.getId_usuario());
+		doctorEntity.setCedula_profesional(doctorFormDto.getCedula_profesional());
+		doctorEntity.setEspecialidad(doctorFormDto.getEspecialidad());
+		doctorEntity.setSub_especialidad(doctorFormDto.getSub_especialidad());
+		doctorEntity.setIdEntidad(doctorFormDto.getIdEntidad());
+		registroDao.guardarDoctor(doctorEntity);
+
+		return doctorFormDto;
+	}
+
+	public PacienteEntity crearPaciente(PacienteEntity pacienteEntity) {
+		registroDao.guardarPaciente(pacienteEntity);
+		return pacienteEntity;
 	}
 
 	public EntidadMedicaFormDto crearClinica(EntidadMedicaFormDto entidadMedicaFormDto) {
@@ -80,5 +109,22 @@ public class RegistroServices {
 		}
 
 		return entidadMedicaFormDto;
+	}
+
+	private UsuarioEntity crearUsuario(UsuarioBaseFormDto usuarioBaseFormDto, TipoUsuarioEnum tipoUsuarioEnum) {
+
+		UsuarioEntity usuarioEntity = new UsuarioEntity();
+		usuarioEntity.setApPaterno(usuarioBaseFormDto.getApPaterno());
+		usuarioEntity.setApMaterno(usuarioBaseFormDto.getApMaterno());
+		usuarioEntity.setNombre(usuarioBaseFormDto.getNombre());
+		usuarioEntity.setEmail(usuarioBaseFormDto.getEmail());
+		usuarioEntity.setFechaNacimiento(usuarioBaseFormDto.getFechaNacimiento());
+		usuarioEntity.setPassword(usuarioBaseFormDto.getPassword());
+		usuarioEntity.setTipo(tipoUsuarioEnum.toString());
+
+		usuariosDao.crearUsuario(usuarioEntity);
+
+		usuarioEntity.setPassword("");
+		return usuarioEntity;
 	}
 }

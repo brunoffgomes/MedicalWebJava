@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pagp.medicalweb.db.mappers.FarmaciaDb">
-
-	<resultMap type="MedicamentoEntity" id="medicamentoMap" autoMapping="true">
-	</resultMap>
 	
 	<select id="getMedicamentosByEntidad" resultType="MedicamentoEntity" parameterType="int" >
 		SELECT * FROM medicamento WHERE idEntidad = #{value}

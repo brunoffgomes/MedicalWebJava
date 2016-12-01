@@ -23,6 +23,17 @@
 	    VALUES(#{idEntidad}, #{idModulo}, #{precio}, #{fechaInicio}, #{fechaFin}, 1)
  	 </insert>
  	 
+ 	  <insert id='insertPaciente' parameterType='PacienteEntity' useGeneratedKeys='true' keyProperty='idPaciente'>
+	  INSERT INTO pacientes (curp,nombre,apellido_paterno, 
+	  		apellido_materno,nivel_socioeconomico,vivienda,tipo_sanguinio,discapacidad,grupo_etnico,religion,idEntidad) 
+			VALUES (#{curp},#{nombre},#{apellido_paterno},#{apellido_materno},#{nivel_socioeconomico},
+				#{vivienda},#{tipo_sanguinio},#{discapacidad},#{grupo_etnico},#{religion},#{idEntidad})
+ 	 </insert>
  	 
-
+ 	 
+ 	  <insert id='insertDoctor' parameterType='DoctorEntity'  keyProperty='idDoctor'>
+	        INSERT INTO doctores (idDoctor,especialidad,sub_especialidad,cedula_profesional,idEntidad) 
+              		VALUES (#{idDoctor},#{especialidad},#{sub_especialidad},#{cedula_profesional},#{idEntidad})
+ 	 </insert>
+ 	 
 </mapper>

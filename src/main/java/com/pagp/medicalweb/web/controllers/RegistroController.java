@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.services.impl.RegistroServices;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
+import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 
 @RestController
@@ -19,9 +21,8 @@ public class RegistroController {
 	private RegistroServices registroServices;
 
 	@RequestMapping(value = "/registroAdministrador", method = RequestMethod.POST)
-	public AdministradorFormDto registroAdministrador(@RequestBody AdministradorFormDto administradorFormDto) {
+	public void registroAdministrador(@RequestBody AdministradorFormDto administradorFormDto) {
 		administradorFormDto = registroServices.crearAdministrador(administradorFormDto);
-		return administradorFormDto;
 	}
 
 	@RequestMapping(value = "/registroClinica", method = RequestMethod.POST)
@@ -30,8 +31,19 @@ public class RegistroController {
 		return entidadMedicaFormDto;
 	}
 
+	@RequestMapping(value = "/registroPaciente", method = RequestMethod.POST)
+	public PacienteEntity registroPaciente(@RequestBody PacienteEntity pacienteEntity) {
+		registroServices.crearPaciente(pacienteEntity);
+		return pacienteEntity;
+	}
+
+	@RequestMapping(value = "/registroDoctor", method = RequestMethod.POST)
+	public void registroDoctor(@RequestBody DoctorFormDto doctorFormDto) {
+		registroServices.crearDoctor(doctorFormDto);
+	}
+
 	@RequestMapping(value = "/valid/email", method = RequestMethod.GET)
-	public Boolean registroClinica(@RequestParam("email") String email) {
+	public Boolean validEmail(@RequestParam("email") String email) {
 		return registroServices.validEmail(email);
 	}
 

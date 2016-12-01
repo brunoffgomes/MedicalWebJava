@@ -35,6 +35,7 @@ public class JwtUtil {
 			u.setUsername(body.getSubject());
 			u.setId(Long.parseLong((String) body.get("userId")));
 			u.setRole((String) body.get("role"));
+			u.setIdEntidad((int) body.get("idEntidad"));
 
 			return u;
 
@@ -56,6 +57,7 @@ public class JwtUtil {
 		Claims claims = Jwts.claims().setSubject(u.getUsername());
 		claims.put("userId", u.getId() + "");
 		claims.put("role", u.getRole());
+		claims.put("idEntidad", u.getIdEntidad());
 
 		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
 	}
