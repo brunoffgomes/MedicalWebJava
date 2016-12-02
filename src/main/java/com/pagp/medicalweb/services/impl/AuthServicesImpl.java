@@ -37,16 +37,31 @@ public class AuthServicesImpl implements AuthServices {
 			if (usuarioEntity.getPassword().equals(user.getPassword())) {
 
 				JwtUserDto jwtUserDto = new JwtUserDto();
-				jwtUserDto.setId((long) usuarioEntity.getId_usuario());
+				jwtUserDto.setId(usuarioEntity.getId_usuario());
 				jwtUserDto.setUsername(usuarioEntity.getEmail());
 				jwtUserDto.setRole(usuarioEntity.getTipo());
 
 				TipoUsuarioEnum tipoUsuarioEnum = TipoUsuarioEnum.valueOf(usuarioEntity.getTipo());
 
 				if (!TipoUsuarioEnum.ADMINISTRADOR.equals(tipoUsuarioEnum)) {
-					if (TipoUsuarioEnum.DOCTOR.equals(tipoUsuarioEnum)) {
+					switch (tipoUsuarioEnum) {
+					case DOCTOR:
 						DoctorEntity doctorEntity = doctoresServices.obtenerDoctor(usuarioEntity.getId_usuario());
 						jwtUserDto.setIdEntidad(doctorEntity.getIdEntidad());
+						break;
+					case ENFERMERO:
+						// DoctorEntity doctorEntity =
+						// doctoresServices.obtenerDoctor(usuarioEntity.getId_usuario());
+						// jwtUserDto.setIdEntidad(doctorEntity.getIdEntidad());
+						break;
+					case FARMACIA:
+						// DoctorEntity doctorEntity =
+						// doctoresServices.obtenerDoctor(usuarioEntity.getId_usuario());
+						// jwtUserDto.setIdEntidad(doctorEntity.getIdEntidad());
+						break;
+
+					default:
+						break;
 					}
 
 				}

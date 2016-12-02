@@ -12,5 +12,29 @@
 		WHERE activo = #{value} 
 		and estatus = 1
 	</select>
-
+	
+	 <insert id='crearSolicitud' parameterType='SolicitudEntity' useGeneratedKeys='true' keyProperty='idSolicitud'>
+	   INSERT INTO solicitudes
+	   	( tipo_solicitud, descripcion, impresion, idPaciente )
+	    VALUES( #{tipo_solicitud}, #{descripcion}, #{impresion}, #{idPaciente}) 
+ 	 </insert>
+ 	 
+ 	  <insert id='crearReceta' parameterType='RecetaEntity' keyProperty='idReceta'>
+	   INSERT INTO recetas
+	   	( idReceta, comentarios )  VALUES( #{idReceta}, #{comentarios}) 
+ 	 </insert>
+ 	 
+ 	   <insert id='crearMedicamentoReceta' parameterType='MedicamentoRecetaEntity'>
+		 	INSERT INTO "dbo"."receta_medicamento" 
+		 		(idReceta,idMedicamento,dosis,toma,tipo_administracion,desde,hasta)
+		 	 VALUES (#{idReceta},#{idMedicamento},#{dosis}
+		 	 ,#{toma},#{tipo_administracion},#{desde},#{hasta})
+	 	</insert>
+	 	
+ 	   <insert id='crearDiagnostico' parameterType='DiagnosticoEntity'>
+		 	INSERT INTO diagnostico
+		 		(idDiagnostico,idDoctor,diagnostico,tratamiento)
+		 	 VALUES (#{idDiagnostico},#{idDoctor},#{diagnostico} ,#{tratamiento})
+	 	</insert>
+	 	 
 </mapper>

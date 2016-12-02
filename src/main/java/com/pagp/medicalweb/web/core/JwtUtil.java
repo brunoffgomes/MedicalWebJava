@@ -33,7 +33,7 @@ public class JwtUtil {
 
 			JwtUserDto u = new JwtUserDto();
 			u.setUsername(body.getSubject());
-			u.setId(Long.parseLong((String) body.get("userId")));
+			u.setId(Integer.parseInt((String) body.get("userId")));
 			u.setRole((String) body.get("role"));
 			u.setIdEntidad((int) body.get("idEntidad"));
 

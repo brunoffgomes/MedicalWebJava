@@ -12,6 +12,52 @@
 
 	<select id="getDoctor" resultType="DoctorEntity" parameterType="int" >
 			SELECT * from doctores WHERE idDoctor = #{value}
-		</select>
+	</select>
+
+
+	<select id="getConsultas" resultMap="consultaResult"  parameterType="int" >
+ 			SELECT s.*,	p.nombre as paciente_nombre  
+ 			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
+			where idEntidad = #{idEntidad}  and tipo_solicitud =  'CONSULTA'
+	</select>
+	
+	
+	<select id="getConsulta" resultMap="consultaResult"  parameterType="int" >
+ 			SELECT s.*,	p.nombre as paciente_nombre  
+ 			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
+			where idSolicitud = #{value}
+	</select>
+
+	<select id="getDiagnosticos" resultMap="diagnosticoResult" parameterType="int" >
+			SELECT d.*,p.nombre as paciente_nombre  
+				from diagnostico  d
+			left join solicitudes s on s.idSolicitud = d.idDiagnostico
+			left join pacientes  p on p.idPaciente = s.idPaciente
+			where idDoctor = #{value} 
+	</select>
+	
+	<select id="getDiagnostico" resultMap="diagnosticoResult" parameterType="int" >
+			SELECT d.*,p.nombre as paciente_nombre  
+			from diagnostico  d
+			left join solicitudes s on s.idSolicitud = d.idDiagnostico
+			left join pacientes  p on p.idPaciente = s.idPaciente
+			where idDiagnostico = #{value} 
+	</select>
+
+
+	<resultMap id="diagnosticoResult" type="DiagnosticoEntity" autoMapping="true">
+		  <association property="paciente" resultMap="pacienteResult" >
+		  </association>
+	</resultMap>
+	
+
+	<resultMap id="consultaResult" type="ConsultaEntity" autoMapping="true">
+		  <association property="paciente" resultMap="pacienteResult" >
+		  </association>
+	</resultMap>
+	
+	<resultMap id="pacienteResult" type="PacienteEntity">
+		<result column="paciente_nombre" property="nombre"/>
+	</resultMap>
 
 </mapper>

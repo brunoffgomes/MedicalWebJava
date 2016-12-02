@@ -12,10 +12,7 @@
     </bean:bean>
     <bean:bean id="restAuthenticationEntryPoint" class="com.pagp.medicalweb.web.core.RestAuthenticationEntryPoint">
     </bean:bean>
-    <bean:bean id="jwtUtil" class="com.pagp.medicalweb.web.core.JwtUtil">
-    </bean:bean>
-    <bean:bean id="jwtAuthenticationProvider" class="com.pagp.medicalweb.web.core.JwtAuthenticationProvider">
-    </bean:bean>
+  
      <bean:bean id="jwtAuthenticationFailureHandler" class="com.pagp.medicalweb.web.core.JwtAuthenticationFailureHandler">
     </bean:bean>
     
@@ -29,8 +26,12 @@
     <http pattern="/api/login" security="none"/>  
     <http pattern="/api/signup" security="none"/>
 
-    <http pattern="/**/secure/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
+	<bean:bean id="corsHandler" class="com.pagp.medicalweb.web.core.CORSFilter" ></bean:bean>
+
+
+    <http pattern="/**/doctores/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
         <csrf disabled="true"/> 
+        <custom-filter ref="corsHandler" after="PRE_AUTH_FILTER"/>        
         <custom-filter before="FORM_LOGIN_FILTER" ref="jwtAuthenticationFilter"/> 
     </http>
     

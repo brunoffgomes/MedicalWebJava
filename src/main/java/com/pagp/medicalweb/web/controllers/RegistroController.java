@@ -11,7 +11,9 @@ import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.services.impl.RegistroServices;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
 import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
+import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
+import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
 
 @RestController
 @RequestMapping("/registro")
@@ -40,6 +42,16 @@ public class RegistroController {
 	@RequestMapping(value = "/registroDoctor", method = RequestMethod.POST)
 	public void registroDoctor(@RequestBody DoctorFormDto doctorFormDto) {
 		registroServices.crearDoctor(doctorFormDto);
+	}
+
+	@RequestMapping(value = "/registroEnfermero", method = RequestMethod.POST)
+	public void registroEnfermero(@RequestBody EnfermeroFormDto enfermeroFormDto) {
+		registroServices.crearEnfermero(enfermeroFormDto);
+	}
+
+	@RequestMapping(value = "/registroFarmacologo", method = RequestMethod.POST)
+	public void registroFarmacologo(@RequestBody FarmacologoFormDto farmacologoFormDto) {
+		registroServices.crearFarmacologo(farmacologoFormDto);
 	}
 
 	@RequestMapping(value = "/valid/email", method = RequestMethod.GET)

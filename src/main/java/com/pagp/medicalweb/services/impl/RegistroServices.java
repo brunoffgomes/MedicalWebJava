@@ -12,6 +12,7 @@ import com.pagp.medicalweb.db.entity.AdministradorEntity;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
+import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
@@ -21,6 +22,7 @@ import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
 import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
+import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
 
 @Service
 @Transactional
@@ -54,11 +56,27 @@ public class RegistroServices {
 		UsuarioEntity usuarioEntity = crearUsuario(enfermeroFormDto, TipoUsuarioEnum.ENFERMERO);
 
 		EnfermeroEntity enfermeroEntity = new EnfermeroEntity();
+		enfermeroEntity.setCedula_profesional(enfermeroFormDto.getCedula_profesional());
+		enfermeroEntity.setIdEntidad(enfermeroFormDto.getIdEntidad());
 		enfermeroEntity.setIdEnfermero(usuarioEntity.getId_usuario());
 
 		registroDao.guardarEnfermero(enfermeroEntity);
 
 		return enfermeroFormDto;
+	}
+
+	public FarmacologoFormDto crearFarmacologo(FarmacologoFormDto farmacologoFormDto) {
+
+		UsuarioEntity usuarioEntity = crearUsuario(farmacologoFormDto, TipoUsuarioEnum.FARMACIA);
+
+		FarmacologoEntity farmacologoEntity = new FarmacologoEntity();
+		farmacologoEntity.setCedula_profesional(farmacologoFormDto.getCedula_profesional());
+		farmacologoEntity.setIdEntidad(farmacologoFormDto.getIdEntidad());
+		farmacologoEntity.setIdFarmacologo(usuarioEntity.getId_usuario());
+
+		registroDao.guardarFarmacologo(farmacologoEntity);
+
+		return farmacologoFormDto;
 	}
 
 	public DoctorFormDto crearDoctor(DoctorFormDto doctorFormDto) {

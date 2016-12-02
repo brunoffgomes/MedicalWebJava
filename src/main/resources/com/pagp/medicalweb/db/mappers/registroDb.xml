@@ -36,4 +36,16 @@
               		VALUES (#{idDoctor},#{especialidad},#{sub_especialidad},#{cedula_profesional},#{idEntidad})
  	 </insert>
  	 
+ 	   <insert id='insertEnfermero' parameterType='EnfermeroEntity'  keyProperty='idEnfermero'>
+	        INSERT INTO enfermeros (idEnfermero,cedula_profesional,idEntidad) 
+              		VALUES (#{idEnfermero},#{cedula_profesional},#{idEntidad})
+ 	 </insert>
+ 	 
+ 	   <insert id='insertFarmacologo' parameterType='FarmacologoEntity'  keyProperty='idFarmacologo'>
+	        INSERT INTO farmacologos (idFarmacologo,cedula_profesional,idEntidad) 
+              		VALUES (#{idFarmacologo},#{cedula_profesional},#{idEntidad})
+ 	 </insert>
+ 	 
+ 	 
+ 	 
 </mapper>

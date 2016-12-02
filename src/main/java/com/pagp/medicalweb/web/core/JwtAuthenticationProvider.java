@@ -7,12 +7,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.pagp.medicalweb.web.core.dto.AuthenticatedUser;
 import com.pagp.medicalweb.web.core.dto.JwtAuthenticationToken;
 import com.pagp.medicalweb.web.core.dto.JwtUserDto;
 import com.pagp.medicalweb.web.core.exceptions.JwtTokenMalformedException;
 
+@Component("jwtAuthenticationProvider")
 public class JwtAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
 	@Autowired
@@ -43,7 +45,8 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
 		java.util.List<GrantedAuthority> authorityList = AuthorityUtils
 				.commaSeparatedStringToAuthorityList(parsedUser.getRole());
 
-		return new AuthenticatedUser(parsedUser.getId(), parsedUser.getUsername(), token, authorityList);
+		return new AuthenticatedUser(parsedUser.getId(), parsedUser.getUsername(), token, authorityList,
+				parsedUser.getIdEntidad());
 	}
 
 }
