@@ -21,6 +21,20 @@ function SolicitudServices ($http,constants) {
         data : receta
       });
   }
+
+  this.obtenerRecetas = function() {
+    return $http({
+        method: 'GET',
+        url: constants.url + '/solicitudes/recetas'
+    });
+  }
+  this.obtenerReceta = function(idReceta) {
+    return $http({
+        method: 'GET',
+        url: constants.url + '/solicitudes/recetas/' + idReceta
+    });
+  }
+
 }
 
 SolicitudServices.$inject =  ["$http","constants"]
