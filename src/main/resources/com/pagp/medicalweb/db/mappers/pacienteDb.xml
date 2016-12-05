@@ -7,5 +7,9 @@
 		SELECT * FROM pacientes WHERE idEntidad = #{value}
 	</select>
 	
+		<select id="getPaciente" resultType="PacienteEntity" parameterType="int" >
+			SELECT * FROM pacientes WHERE idPaciente = #{value}
+		</select>
+	
 	
 </mapper>

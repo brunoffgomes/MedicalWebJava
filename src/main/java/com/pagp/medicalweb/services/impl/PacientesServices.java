@@ -20,4 +20,8 @@ public class PacientesServices {
 		return pacientesDao.obtenerPacientes(idEntidad);
 	}
 
+	public PacienteEntity obtenerPaciente(int idPaciente) {
+		return pacientesDao.obtenerPaciente(idPaciente);
+	}
+
 }

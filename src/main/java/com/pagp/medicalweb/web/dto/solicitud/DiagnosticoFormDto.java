@@ -1,11 +1,14 @@
 package com.pagp.medicalweb.web.dto.solicitud;
 
+import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
+
 public class DiagnosticoFormDto {
 
 	private int idDiagnostico;
 	private int idDoctor;
 	private String diagnostico;
 	private String tratamiento;
+	private EstatusSolicitudEnum estatus =  EstatusSolicitudEnum.ABIERTA;
 
 	public int getIdDiagnostico() {
 		return idDiagnostico;
@@ -37,5 +40,13 @@ public class DiagnosticoFormDto {
 
 	public void setTratamiento(String tratamiento) {
 		this.tratamiento = tratamiento;
+	}
+
+	public EstatusSolicitudEnum getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(EstatusSolicitudEnum estatus) {
+		this.estatus = estatus;
 	}
 }

@@ -16,7 +16,7 @@ import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
 
 @RestController
-@RequestMapping("/registro")
+@RequestMapping("/api/registro")
 public class RegistroController {
 
 	@Autowired

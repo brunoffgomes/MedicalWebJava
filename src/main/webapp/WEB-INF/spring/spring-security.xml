@@ -7,41 +7,24 @@
 
     <global-method-security pre-post-annotations="enabled" /> 
     
-    
-    <bean:bean id="jwtAuthenticationSuccessHandler" class="com.pagp.medicalweb.web.core.JwtAuthenticationSuccessHandler">
-    </bean:bean>
-    <bean:bean id="restAuthenticationEntryPoint" class="com.pagp.medicalweb.web.core.RestAuthenticationEntryPoint">
-    </bean:bean>
-  
-     <bean:bean id="jwtAuthenticationFailureHandler" class="com.pagp.medicalweb.web.core.JwtAuthenticationFailureHandler">
-    </bean:bean>
-    
-    
     <bean:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<bean:property name="location">
 			<bean:value>classpath:application.properties</bean:value>
 		</bean:property>
 	</bean:bean>
     
-    <http pattern="/api/login" security="none"/>  
-    <http pattern="/api/signup" security="none"/>
+    <http pattern="/api/registro/registroAdministrador" security="none"/>  
+    <http pattern="/api/auth/login" security="none"/>
+    <http pattern="/" security="none"/>
+    
 
-	<bean:bean id="corsHandler" class="com.pagp.medicalweb.web.core.CORSFilter" ></bean:bean>
-
-
-    <http pattern="/**/doctores/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
+    <http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
         <csrf disabled="true"/> 
-        <custom-filter ref="corsHandler" after="PRE_AUTH_FILTER"/>        
+        <custom-filter ref="CORSFilter" after="PRE_AUTH_FILTER"/>        
         <custom-filter before="FORM_LOGIN_FILTER" ref="jwtAuthenticationFilter"/> 
     </http>
     
-    <bean:bean id="jwtAuthenticationFilter" class="com.pagp.medicalweb.web.core.JwtAuthenticationFilter"> 
-        <bean:property name="authenticationManager" ref="authenticationManager" />
-        <bean:property name="authenticationSuccessHandler" ref="jwtAuthenticationSuccessHandler" /> 
-        <bean:property name="authenticationFailureHandler" ref="jwtAuthenticationFailureHandler"/>
-    </bean:bean>
-    
-   
+    <bean:bean id="CORSFilter" class="com.pagp.medicalweb.web.core.CORSFilter"></bean:bean>
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider ref="jwtAuthenticationProvider" /> 

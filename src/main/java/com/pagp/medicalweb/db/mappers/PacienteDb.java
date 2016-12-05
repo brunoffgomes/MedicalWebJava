@@ -8,4 +8,6 @@ public interface PacienteDb {
 
 	List<PacienteEntity> getPacientesByEntidad(int idEntidad);
 
+	PacienteEntity getPaciente(int idPaciente);
+
 }

@@ -6,7 +6,9 @@ public class DiagnosticoEntity {
 	private int idDoctor;
 	private String diagnostico;
 	private String tratamiento;
+	private String estatus;
 	private PacienteEntity paciente;
+
 
 	public int getIdDiagnostico() {
 		return idDiagnostico;
@@ -46,5 +48,13 @@ public class DiagnosticoEntity {
 
 	public void setPaciente(PacienteEntity paciente) {
 		this.paciente = paciente;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
 	}
 }

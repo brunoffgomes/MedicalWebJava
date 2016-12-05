@@ -2,13 +2,15 @@ package com.pagp.medicalweb.web.dto.solicitud;
 
 import java.util.Date;
 
+import com.pagp.medicalweb.web.enums.TipoAdministracionEnum;
+
 public class MedicamentoRecetaFormDto {
 
 	private int idReceta;
 	private int idMedicamento;
 	private String dosis;
 	private String toma;
-	private String tipo_administracion;
+	private TipoAdministracionEnum tipo_administracion;
 	private Date desde;
 	private Date hasta;
 
@@ -44,11 +46,11 @@ public class MedicamentoRecetaFormDto {
 		this.toma = toma;
 	}
 
-	public String getTipo_administracion() {
+	public TipoAdministracionEnum getTipo_administracion() {
 		return tipo_administracion;
 	}
 
-	public void setTipo_administracion(String tipo_administracion) {
+	public void setTipo_administracion(TipoAdministracionEnum tipo_administracion) {
 		this.tipo_administracion = tipo_administracion;
 	}
 

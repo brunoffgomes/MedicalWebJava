@@ -1,5 +1,7 @@
 package com.pagp.medicalweb.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,6 +35,26 @@ public class SolicitudesDao {
 	public MedicamentoRecetaEntity crearMedicamentoReceta(MedicamentoRecetaEntity medicamentoRecetaEntity) {
 		entidadDb.crearMedicamentoReceta(medicamentoRecetaEntity);
 		return medicamentoRecetaEntity;
+	}
+
+	public void actualizarSolicitud(SolicitudEntity solicitudEntity) {
+		entidadDb.actualizarSolicitud(solicitudEntity);
+	}
+
+	public void actualizarDiagnostico(DiagnosticoEntity diagnosticoEntity) {
+		entidadDb.actualizarDiagnostico(diagnosticoEntity);
+	}
+
+	public void actualizarReceta(RecetaEntity recetaEntity) {
+		entidadDb.actualizarReceta(recetaEntity);
+	}
+
+	public List<RecetaEntity> obtenerRecetas(int idEntidad) {
+		return entidadDb.getRecetas(idEntidad);
+	}
+
+	public RecetaEntity obtenerReceta(int idReceta) {
+		return entidadDb.getReceta(idReceta);
 	}
 
 }

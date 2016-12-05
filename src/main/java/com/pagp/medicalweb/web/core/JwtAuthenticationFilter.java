@@ -7,18 +7,45 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.stereotype.Component;
 
 import com.pagp.medicalweb.web.core.dto.JwtAuthenticationToken;
 import com.pagp.medicalweb.web.core.exceptions.JwtTokenMissingException;
 
+
+@Component("jwtAuthenticationFilter")
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
+	
 	public JwtAuthenticationFilter() {
 		super("/**");
 	}
+
+	
+	@Autowired
+	@Qualifier("authenticationManager")
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		super.setAuthenticationManager(authenticationManager);
+	}
+	
+	@Autowired
+	@Qualifier("jwtAuthenticationFailureHandler")
+	public void setAuthenticationFailureHandler(JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
+		super.setAuthenticationFailureHandler(jwtAuthenticationFailureHandler);
+	};
+	
+	@Autowired
+	@Qualifier("jwtAuthenticationSuccessHandler")
+	public void setAuthenticationSuccessHandler(JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler) {
+		super.setAuthenticationSuccessHandler(jwtAuthenticationSuccessHandler);
+	};
+
 
 	@Override
 	protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {

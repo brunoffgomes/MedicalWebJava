@@ -12,7 +12,7 @@ import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.services.impl.EntidadesServices;
 
 @RestController
-@RequestMapping("/entidades")
+@RequestMapping("/api/entidades")
 public class EntidadesController {
 
 	@Autowired

@@ -16,7 +16,7 @@ public class DoctoresDao {
 	@Autowired
 	private DoctorDb db;
 
-	public List<DoctorEntity> getDoctoresByEntidad(int idEntidad) {
+	public List<DoctorEntity> getDoctoresByEntidad(int idEntidad) {		
 		return db.getDoctoresByEntidad(idEntidad);
 	}
 
@@ -31,6 +31,7 @@ public class DoctoresDao {
 	public ConsultaEntity obtenerConsulta(int idSolicitud) {
 		return db.getConsulta(idSolicitud);
 	}
+	
 
 	public List<DiagnosticoEntity> obtenerDiagnosticos(int idDoctor) {
 		return db.getDiagnosticos(idDoctor);

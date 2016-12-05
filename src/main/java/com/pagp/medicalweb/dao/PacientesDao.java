@@ -18,4 +18,8 @@ public class PacientesDao {
 		return db.getPacientesByEntidad(idEntidad);
 	}
 
+	public PacienteEntity obtenerPaciente(int idPaciente) {
+		return db.getPaciente(idPaciente);
+	}
+
 }

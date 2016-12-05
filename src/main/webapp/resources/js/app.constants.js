@@ -2,15 +2,18 @@
 angular
     .module('app.constants', [])
     .constant("constants", {
-        "url": "http://localhost:8000",
+        "url": "http://medicalweb.azurewebsites.net/api",
         "ADMINISTRADOR":[
           {path:"#home",text:"Inicio"}, {path:"#registroClinica",text:"Registro Clinica"},{path:"#entidades",text:"Entidades"}
         ],
         "DOCTOR":[
-          {path:"#home",text:"Inicio"}, {path:"#consulta",text:"Consulta"}, {path:"#recetas",text:"recetas"}
+          {path:"#home",text:"Inicio"}, {path:"#consultas",text:"Consulta"}, {path:"#diagnosticos",text:"Diagnosticos"}
         ],
         "ENFERMERO":[
-          {path:"#home",text:"Inicio"}, {path:"#solicit",text:"Solicitud"}, {path:"#pacientes",text:"Pacientes"}
+          {path:"#home",text:"Inicio"}, {path:"#solicitud",text:"Solicitud"}, {path:"#pacientes",text:"Pacientes"}
+        ],
+        "ADMINISTRADOR_CE":[
+          {path:"#home",text:"Inicio"}, {path:"#doctores",text:"Doctores"},{path:"#farmacologo",text:"Farmacologo"}
         ],
         "FARMACIA":[
           {path:"#home",text:"Inicio"}, {path:"#inventario",text:"Inventario"},{path:"#recetas",text:"Recetas"}

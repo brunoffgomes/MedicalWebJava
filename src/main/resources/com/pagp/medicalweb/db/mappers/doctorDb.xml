@@ -18,14 +18,14 @@
 	<select id="getConsultas" resultMap="consultaResult"  parameterType="int" >
  			SELECT s.*,	p.nombre as paciente_nombre  
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
-			where idEntidad = #{idEntidad}  and tipo_solicitud =  'CONSULTA'
+			where idEntidad = #{idEntidad}  and tipo_solicitud =  'CONSULTA'  and estatus = 'ABIERTA'
 	</select>
 	
 	
 	<select id="getConsulta" resultMap="consultaResult"  parameterType="int" >
  			SELECT s.*,	p.nombre as paciente_nombre  
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
-			where idSolicitud = #{value}
+			where idSolicitud = #{value} 
 	</select>
 
 	<select id="getDiagnosticos" resultMap="diagnosticoResult" parameterType="int" >
@@ -33,7 +33,7 @@
 				from diagnostico  d
 			left join solicitudes s on s.idSolicitud = d.idDiagnostico
 			left join pacientes  p on p.idPaciente = s.idPaciente
-			where idDoctor = #{value} 
+			where idDoctor = #{value}   and d.estatus = 'ABIERTA'
 	</select>
 	
 	<select id="getDiagnostico" resultMap="diagnosticoResult" parameterType="int" >
@@ -41,7 +41,7 @@
 			from diagnostico  d
 			left join solicitudes s on s.idSolicitud = d.idDiagnostico
 			left join pacientes  p on p.idPaciente = s.idPaciente
-			where idDiagnostico = #{value} 
+			where idDiagnostico = #{value}  
 	</select>
 
 

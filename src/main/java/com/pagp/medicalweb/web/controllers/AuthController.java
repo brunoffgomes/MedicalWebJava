@@ -13,7 +13,7 @@ import com.pagp.medicalweb.web.dto.UserLogginFormInDto;
 import com.pagp.medicalweb.web.dto.UserLogginFormOutDto;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
 	@Autowired
