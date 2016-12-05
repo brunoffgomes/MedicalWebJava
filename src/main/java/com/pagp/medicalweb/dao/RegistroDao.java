@@ -3,6 +3,7 @@ package com.pagp.medicalweb.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.AdministradorEntity;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
@@ -21,6 +22,11 @@ public class RegistroDao {
 	public AdministradorEntity guardarAdministrador(AdministradorEntity administradorEntity) {
 		registroDb.insertAdministrador(administradorEntity);
 		return administradorEntity;
+	}
+
+	public AdministradorCEEntity guardarAdministradorCE(AdministradorCEEntity administradorCEEntity) {
+		registroDb.insertAdministradorCE(administradorCEEntity);
+		return administradorCEEntity;
 	}
 
 	public EntidadEntity guardarEntidad(EntidadEntity entidadEntity) {

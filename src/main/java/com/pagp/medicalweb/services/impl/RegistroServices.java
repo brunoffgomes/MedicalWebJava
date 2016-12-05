@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pagp.medicalweb.dao.RegistroDao;
 import com.pagp.medicalweb.dao.UsuariosDao;
+import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.AdministradorEntity;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
@@ -18,6 +19,7 @@ import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.web.dto.core.TipoUsuarioEnum;
 import com.pagp.medicalweb.web.dto.core.UsuarioBaseFormDto;
+import com.pagp.medicalweb.web.dto.registro.AdministradorCEFormDto;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
 import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
@@ -38,6 +40,21 @@ public class RegistroServices {
 		return usuariosDao.getUsuarioByEmail(email) == null;
 	}
 
+	public AdministradorCEFormDto crearAdministradorCE(AdministradorCEFormDto administradorCEFormDto) {
+
+		UsuarioEntity usuarioEntity = crearUsuario(administradorCEFormDto, TipoUsuarioEnum.ADMINISTRADOR_CE);
+
+		AdministradorCEEntity administradorEntity = new AdministradorCEEntity();
+		administradorEntity.setIdEntidad(administradorCEFormDto.getIdEntidad());
+		administradorEntity.setCargo(administradorCEFormDto.getCargo());
+		administradorEntity.setIdAdministradorCE(usuarioEntity.getId_usuario());
+		administradorEntity.setCedula_profesional(administradorCEFormDto.getCedula_profesional());
+
+		registroDao.guardarAdministradorCE(administradorEntity);
+
+		return administradorCEFormDto;
+	}
+
 	public AdministradorFormDto crearAdministrador(AdministradorFormDto administradorFormDto) {
 
 		UsuarioEntity usuarioEntity = crearUsuario(administradorFormDto, TipoUsuarioEnum.ADMINISTRADOR);
@@ -49,6 +66,13 @@ public class RegistroServices {
 		registroDao.guardarAdministrador(administradorEntity);
 
 		return administradorFormDto;
+	}
+
+	public UsuarioBaseFormDto crearSuperAdministrador(UsuarioBaseFormDto usuarioBaseFormDto) {
+
+		crearUsuario(usuarioBaseFormDto, TipoUsuarioEnum.SUPERADMINISTRADOR);
+
+		return usuarioBaseFormDto;
 	}
 
 	public EnfermeroFormDto crearEnfermero(EnfermeroFormDto enfermeroFormDto) {

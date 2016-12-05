@@ -26,7 +26,7 @@ public class AuthServicesImpl implements AuthServices {
 
 	@Autowired
 	private DoctoresDao doctoresDao;
-	
+
 	@Autowired
 	private EntidadesDao entidadesDao;
 
@@ -50,8 +50,7 @@ public class AuthServicesImpl implements AuthServices {
 
 				TipoUsuarioEnum tipoUsuarioEnum = TipoUsuarioEnum.valueOf(usuarioEntity.getTipo());
 				int idUsuario = usuarioEntity.getId_usuario();
-				
-				
+
 				if (!TipoUsuarioEnum.ADMINISTRADOR.equals(tipoUsuarioEnum)) {
 					switch (tipoUsuarioEnum) {
 					case DOCTOR:
@@ -59,11 +58,11 @@ public class AuthServicesImpl implements AuthServices {
 						jwtUserDto.setIdEntidad(doctorEntity.getIdEntidad());
 						break;
 					case ENFERMERO:
-						EnfermeroEntity enfermeroEntity =  entidadesDao.getEnfermero(idUsuario);
+						EnfermeroEntity enfermeroEntity = entidadesDao.getEnfermero(idUsuario);
 						jwtUserDto.setIdEntidad(enfermeroEntity.getIdEntidad());
 						break;
 					case FARMACIA:
-						FarmacologoEntity farmacologoEntity =  entidadesDao.getFarmacologo(idUsuario);
+						FarmacologoEntity farmacologoEntity = entidadesDao.getFarmacologo(idUsuario);
 						jwtUserDto.setIdEntidad(farmacologoEntity.getIdEntidad());
 						break;
 					default:

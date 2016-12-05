@@ -1,6 +1,7 @@
 package com.pagp.medicalweb.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.services.impl.RegistroServices;
+import com.pagp.medicalweb.web.core.AuthenticationFacade;
+import com.pagp.medicalweb.web.dto.core.UsuarioBaseFormDto;
+import com.pagp.medicalweb.web.dto.registro.AdministradorCEFormDto;
 import com.pagp.medicalweb.web.dto.registro.AdministradorFormDto;
 import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
@@ -22,9 +26,23 @@ public class RegistroController {
 	@Autowired
 	private RegistroServices registroServices;
 
+	@Autowired
+	public AuthenticationFacade authenticationFacade;
+
 	@RequestMapping(value = "/registroAdministrador", method = RequestMethod.POST)
 	public void registroAdministrador(@RequestBody AdministradorFormDto administradorFormDto) {
 		administradorFormDto = registroServices.crearAdministrador(administradorFormDto);
+	}
+
+	@PreAuthorize("hasRole('SUPERADMINISTRADOR')")
+	@RequestMapping(value = "/registroSuperAdministrador", method = RequestMethod.POST)
+	public void registroSuperAdministrador(@RequestBody UsuarioBaseFormDto usuarioBaseFormDto) {
+		registroServices.crearSuperAdministrador(usuarioBaseFormDto);
+	}
+
+	@RequestMapping(value = "/registroAdministradorCe", method = RequestMethod.POST)
+	public void registroAdministradorCE(@RequestBody AdministradorCEFormDto administradorCEFormDto) {
+		registroServices.crearAdministradorCE(administradorCEFormDto);
 	}
 
 	@RequestMapping(value = "/registroClinica", method = RequestMethod.POST)

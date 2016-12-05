@@ -47,5 +47,12 @@
  	 </insert>
  	 
  	 
+ 	 <insert id='insertAdministradorCE' parameterType='AdministradorCEEntity' keyProperty='id_administrador'>
+	   INSERT INTO administradoresCE
+	   	(idAdministradorCE, cargo, cedula_profesional,idEntidad) 
+	    VALUES(#{idAdministradorCE}, #{cargo},#{cedula_profesional},#{idEntidad})
+ 	 </insert>
  	 
+ 	 
+ 
 </mapper>

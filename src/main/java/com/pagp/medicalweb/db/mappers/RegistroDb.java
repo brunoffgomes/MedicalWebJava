@@ -1,5 +1,6 @@
 package com.pagp.medicalweb.db.mappers;
 
+import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.AdministradorEntity;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
@@ -15,6 +16,8 @@ public interface RegistroDb {
 	void insertarModuloContratado(ModuloContratadoEntity moduloContratadoEntity);
 
 	void insertAdministrador(AdministradorEntity administradorEntity);
+
+	void insertAdministradorCE(AdministradorCEEntity administradorCEEntity);
 
 	void insertEnfermero(EnfermeroEntity enfermeroEntity);
 
