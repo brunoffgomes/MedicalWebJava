@@ -54,4 +54,9 @@ public class SolicitudesController {
 		return solicitudesServices.obtenerReceta(idReceta);
 	}
 
+	@RequestMapping(value = "/recetas/entrega", method = RequestMethod.POST)
+	public void obtenerReceta(RecetaEntity recetaEntity) {
+		solicitudesServices.entregarReceta(recetaEntity);
+	}
+
 }

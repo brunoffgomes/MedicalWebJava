@@ -36,6 +36,11 @@ public class SolicitudesServices {
 		return solicitudesDao.obtenerReceta(idReceta);
 	}
 
+	public void entregarReceta(RecetaEntity recetaEntity) {
+		recetaEntity.setEstatus(EstatusSolicitudEnum.CERRADA.toString());
+		solicitudesDao.actualizarReceta(recetaEntity);
+	}
+
 	public SolicitudFormDto crearSolicitud(SolicitudFormDto solicitudFormDto) {
 		SolicitudEntity solicitudEntity = new SolicitudEntity();
 		solicitudEntity.setDescripcion(solicitudFormDto.getDescripcion());
