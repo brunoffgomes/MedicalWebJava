@@ -22,24 +22,24 @@ public class EntidadesDao {
 		return db.obtenerEntidades(idAdministrador);
 	}
 
+	public List<EntidadEntity> obtenerEntidades() {
+		return db.obtenerEntidadesAll();
+	}
+
 	public List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad) {
 		return db.obtenerModulosEntidadActuales(idEntidad);
 	}
-	
 
 	public EnfermeroEntity getEnfermero(int idEnfermero) {
 		return db.getEnfermero(idEnfermero);
 	}
-	
 
 	public FarmacologoEntity getFarmacologo(int idFarmacologoo) {
 		return db.getFarmacologo(idFarmacologoo);
 	}
-	
-	
+
 	public AdministradorCEEntity getAdministradorCE(int idAdministradorCE) {
 		return db.getAdministradorCE(idAdministradorCE);
 	}
 
-	
 }

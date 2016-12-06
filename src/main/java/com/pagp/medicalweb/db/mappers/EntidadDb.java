@@ -16,6 +16,8 @@ public interface EntidadDb {
 
 	List<EntidadEntity> obtenerEntidades(int idAdministrador);
 
+	List<EntidadEntity> obtenerEntidadesAll();
+
 	List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad);
 
 	void crearSolicitud(SolicitudEntity solicitudEntity);

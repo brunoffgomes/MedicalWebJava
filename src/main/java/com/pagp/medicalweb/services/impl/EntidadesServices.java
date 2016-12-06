@@ -24,4 +24,8 @@ public class EntidadesServices {
 	public List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad) {
 		return entidadesDao.obtenerModulosEntidadActuales(idEntidad);
 	}
+
+	public List<EntidadEntity> obtenerEntidades() {
+		return entidadesDao.obtenerEntidades();
+	}
 }

@@ -28,4 +28,9 @@ public class EntidadesController {
 		return entidadesServices.obtenerModulosEntidadActuales(idEntidad);
 	}
 
+	@RequestMapping("")
+	public List<EntidadEntity> obtenerEntidades() {
+		return entidadesServices.obtenerEntidades();
+	}
+
 }
