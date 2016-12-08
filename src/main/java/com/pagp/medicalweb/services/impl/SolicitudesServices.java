@@ -12,6 +12,8 @@ import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.db.entity.receta.MedicamentoRecetaEntity;
 import com.pagp.medicalweb.db.entity.receta.RecetaEntity;
 import com.pagp.medicalweb.db.entity.receta.SolicitudEntity;
+import com.pagp.medicalweb.services.auditoria.Auditable;
+import com.pagp.medicalweb.services.enums.AuditingActionTypeEnum;
 import com.pagp.medicalweb.web.dto.solicitud.DiagnosticoFormDto;
 import com.pagp.medicalweb.web.dto.solicitud.MedicamentoRecetaFormDto;
 import com.pagp.medicalweb.web.dto.solicitud.RecetaFormDto;
@@ -41,6 +43,7 @@ public class SolicitudesServices {
 		solicitudesDao.actualizarReceta(recetaEntity);
 	}
 
+	@Auditable(actionType = AuditingActionTypeEnum.SOLICITUD_SERVICIO)
 	public SolicitudFormDto crearSolicitud(SolicitudFormDto solicitudFormDto) {
 		SolicitudEntity solicitudEntity = new SolicitudEntity();
 		solicitudEntity.setDescripcion(solicitudFormDto.getDescripcion());

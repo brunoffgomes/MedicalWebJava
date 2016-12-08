@@ -1,5 +1,6 @@
 package com.pagp.medicalweb.web.dto.solicitud;
 
+import com.pagp.medicalweb.services.auditoria.AuditingTargetPaciente;
 import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
 import com.pagp.medicalweb.web.enums.TipoSolicitudEnum;
 
@@ -7,6 +8,7 @@ public class SolicitudFormDto {
 
 	private int idSolicitud;
 	private TipoSolicitudEnum tipo_solicitud = TipoSolicitudEnum.CONSULTA;
+	@AuditingTargetPaciente
 	private int idPaciente;
 	private String descripcion;
 	private String impresion;

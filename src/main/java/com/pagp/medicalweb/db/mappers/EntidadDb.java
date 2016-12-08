@@ -6,6 +6,7 @@ import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.db.entity.receta.MedicamentoRecetaEntity;
@@ -39,6 +40,8 @@ public interface EntidadDb {
 	FarmacologoEntity getFarmacologo(int idFarmacologoo);
 
 	AdministradorCEEntity getAdministradorCE(int idAdministradorCE);
+
+	LaboratoristaEntity getLaboratorista(int idLaboratorista);
 
 	List<RecetaEntity> getRecetas(int idEntidad);
 

@@ -14,9 +14,12 @@ import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
+import com.pagp.medicalweb.services.auditoria.Auditable;
+import com.pagp.medicalweb.services.enums.AuditingActionTypeEnum;
 import com.pagp.medicalweb.web.dto.core.TipoUsuarioEnum;
 import com.pagp.medicalweb.web.dto.core.UsuarioBaseFormDto;
 import com.pagp.medicalweb.web.dto.registro.AdministradorCEFormDto;
@@ -25,6 +28,7 @@ import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
+import com.pagp.medicalweb.web.dto.registro.LaboratoristaFormDto;
 
 @Service
 @Transactional
@@ -103,6 +107,20 @@ public class RegistroServices {
 		return farmacologoFormDto;
 	}
 
+	public LaboratoristaFormDto crearLaboratorista(LaboratoristaFormDto laboratoristaFormDto) {
+
+		UsuarioEntity usuarioEntity = crearUsuario(laboratoristaFormDto, TipoUsuarioEnum.LABORATORIO);
+
+		LaboratoristaEntity laboratoristaEntity = new LaboratoristaEntity();
+		laboratoristaEntity.setCedula_profesional(laboratoristaFormDto.getCedula_profesional());
+		laboratoristaEntity.setIdEntidad(laboratoristaFormDto.getIdEntidad());
+		laboratoristaEntity.setIdLaboratorista(usuarioEntity.getId_usuario());
+
+		registroDao.guardarLaboratorista(laboratoristaEntity);
+
+		return laboratoristaFormDto;
+	}
+
 	public DoctorFormDto crearDoctor(DoctorFormDto doctorFormDto) {
 
 		UsuarioEntity usuarioEntity = crearUsuario(doctorFormDto, TipoUsuarioEnum.DOCTOR);
@@ -118,6 +136,7 @@ public class RegistroServices {
 		return doctorFormDto;
 	}
 
+	@Auditable(actionType = AuditingActionTypeEnum.PACIENTE_CREADO)
 	public PacienteEntity crearPaciente(PacienteEntity pacienteEntity) {
 		registroDao.guardarPaciente(pacienteEntity);
 		return pacienteEntity;

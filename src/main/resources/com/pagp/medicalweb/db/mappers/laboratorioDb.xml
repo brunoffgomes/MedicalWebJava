@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pagp.medicalweb.db.mappers.LaboratorioDb">
+	
+		<select id="obtenerConsultas" resultMap="consultaResult"  parameterType="int" >
+ 			SELECT s.*,	p.nombre as paciente_nombre  
+ 			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
+			where idEntidad = #{value}  and tipo_solicitud =  'ANALISIS'  and estatus = 'ABIERTA'
+		</select>
+	
+		<resultMap id="consultaResult" type="ConsultaEntity"  >
+			  <association property="paciente" resultMap="pacienteResult" >
+			  </association>
+		</resultMap>
+		
+		<resultMap id="pacienteResult" type="PacienteEntity">
+			<result column="paciente_nombre" property="nombre"/>
+		</resultMap>
+		
+			<insert id="crearAnalisis"  parameterType="AnalisisEntity"   >
+	 			INSERT INTO analisis  	(idAnalisis, fecha  ,estatus, observaciones, idLaboratorista)
+		 			 VALUES ( #{idAnalisis}, #{fecha} , #{estatus}, #{observaciones} , #{idLaboratorista})
+			</insert>
+			
+			
+			<insert id="crearMuestra"  parameterType="MuestraEntity"  keyProperty="idMuestra" >
+	 			INSERT INTO muestras
+		 				(idAnalisis, tipo_muestra  ,numero)
+		 			 VALUES (#{idAnalisis}, #{tipo_muestra} ,#{numero})
+			</insert>
+		
+</mapper>

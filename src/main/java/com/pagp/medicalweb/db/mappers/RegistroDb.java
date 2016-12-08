@@ -6,6 +6,7 @@ import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 
@@ -26,5 +27,7 @@ public interface RegistroDb {
 	void insertDoctor(DoctorEntity doctorEntity);
 
 	void insertFarmacologo(FarmacologoEntity farmacologoEntity);
+
+	void insertLaboratorista(LaboratoristaEntity laboratoristaEntity);
 
 }

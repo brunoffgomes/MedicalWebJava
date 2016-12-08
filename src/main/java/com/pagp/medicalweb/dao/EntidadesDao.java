@@ -9,6 +9,7 @@ import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.mappers.EntidadDb;
 
@@ -40,6 +41,10 @@ public class EntidadesDao {
 
 	public AdministradorCEEntity getAdministradorCE(int idAdministradorCE) {
 		return db.getAdministradorCE(idAdministradorCE);
+	}
+
+	public LaboratoristaEntity getLaboratorista(int idLaboratorista) {
+		return db.getLaboratorista(idLaboratorista);
 	}
 
 }

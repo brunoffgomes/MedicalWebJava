@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 import com.pagp.medicalweb.dao.DoctoresDao;
 import com.pagp.medicalweb.dao.EntidadesDao;
 import com.pagp.medicalweb.dao.UsuariosDao;
+import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.services.api.AuthServices;
 import com.pagp.medicalweb.services.models.UserLoginServicesInDto;
@@ -65,6 +67,16 @@ public class AuthServicesImpl implements AuthServices {
 						FarmacologoEntity farmacologoEntity = entidadesDao.getFarmacologo(idUsuario);
 						jwtUserDto.setIdEntidad(farmacologoEntity.getIdEntidad());
 						break;
+					case ADMINISTRADOR_CE:
+						AdministradorCEEntity administradorCEEntity = entidadesDao.getAdministradorCE(idUsuario);
+						jwtUserDto.setIdEntidad(administradorCEEntity.getIdEntidad());
+						break;
+
+					case LABORATORIO:
+						LaboratoristaEntity laboratoristaEntity = entidadesDao.getLaboratorista(idUsuario);
+						jwtUserDto.setIdEntidad(laboratoristaEntity.getIdEntidad());
+						break;
+
 					default:
 						break;
 					}

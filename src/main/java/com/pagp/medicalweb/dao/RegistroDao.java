@@ -9,6 +9,7 @@ import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.db.mappers.RegistroDb;
@@ -47,6 +48,11 @@ public class RegistroDao {
 	public FarmacologoEntity guardarFarmacologo(FarmacologoEntity farmacologoEntity) {
 		registroDb.insertFarmacologo(farmacologoEntity);
 		return farmacologoEntity;
+	}
+
+	public LaboratoristaEntity guardarLaboratorista(LaboratoristaEntity laboratoristaEntity) {
+		registroDb.insertLaboratorista(laboratoristaEntity);
+		return laboratoristaEntity;
 	}
 
 	public DoctorEntity guardarDoctor(DoctorEntity doctorEntity) {

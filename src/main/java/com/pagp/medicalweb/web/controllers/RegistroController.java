@@ -18,6 +18,7 @@ import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
+import com.pagp.medicalweb.web.dto.registro.LaboratoristaFormDto;
 
 @RestController
 @RequestMapping("/api/registro")
@@ -70,6 +71,11 @@ public class RegistroController {
 	@RequestMapping(value = "/registroFarmacologo", method = RequestMethod.POST)
 	public void registroFarmacologo(@RequestBody FarmacologoFormDto farmacologoFormDto) {
 		registroServices.crearFarmacologo(farmacologoFormDto);
+	}
+
+	@RequestMapping(value = "/registroLaboratorista", method = RequestMethod.POST)
+	public void registroFarmacologo(@RequestBody LaboratoristaFormDto laboratoristaFormDto) {
+		registroServices.crearLaboratorista(laboratoristaFormDto);
 	}
 
 	@RequestMapping(value = "/valid/email", method = RequestMethod.GET)

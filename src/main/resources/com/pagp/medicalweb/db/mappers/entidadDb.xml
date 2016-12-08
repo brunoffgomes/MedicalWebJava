@@ -4,12 +4,12 @@
 <mapper namespace="com.pagp.medicalweb.db.mappers.EntidadDb">
 
 
-	<select id="obtenerEntidades" resultType="EntidadEntity"  >
+	<select id="obtenerEntidadesAll" resultType="EntidadEntity"  >
 		SELECT * FROM entidades 
 	</select>
 
-	<select id="obtenerEntidadesAll" resultType="EntidadEntity" parameterType="int" >
-		SELECT * FROM entidades WHERE idAdministrador = #{value}
+	<select id="obtenerEntidades" resultType="EntidadEntity" parameterType="int" >
+			SELECT * FROM entidades WHERE idAdministrador = #{value}
 	</select>
 	
 	<select id="obtenerModulosEntidadActuales" resultType="ModuloContratadoEntity" parameterType="int" >
@@ -64,9 +64,14 @@
 				SELECT * FROM farmacologos WHERE idFarmacologo = #{value}
 		</select>
 			
+		
+		<select id="getLaboratorista" resultType="LaboratoristaEntity" parameterType="int" >
+				SELECT * FROM laboratoristas WHERE idLaboratorista = #{value}
+		</select>
+			
 			
 		<select id="getAdministradorCE" resultType="AdministradorCEEntity" parameterType="int" >
-				SELECT * FROM administradores_ce WHERE idAdministrador = #{value}
+				SELECT * FROM administradoresCE WHERE idAdministradorCE = #{value}
 		</select>
 	 	 
 	 	 <select id="getRecetas" resultType="RecetaEntity" parameterType="int" >
