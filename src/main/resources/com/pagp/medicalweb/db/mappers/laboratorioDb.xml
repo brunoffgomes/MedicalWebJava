@@ -3,13 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pagp.medicalweb.db.mappers.LaboratorioDb">
 	
-		<select id="obtenerConsultas" resultMap="consultaResult"  parameterType="int" >
+		<select id="obtenerAnalisis" resultMap="consultaResult"  parameterType="int" >
  			SELECT s.*,	p.nombre as paciente_nombre  
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
-			where idEntidad = #{value}  and tipo_solicitud =  'ANALISIS'  and estatus = 'ABIERTA'
+			where s.tipo_solicitud =  'ANALISIS'  and estatus = 'ABIERTA' and  p.idEntidad = #{value}  
 		</select>
 	
-		<resultMap id="consultaResult" type="ConsultaEntity"  >
+		<resultMap id="consultaResult" type="ConsultaEntity"  autoMapping="true">
 			  <association property="paciente" resultMap="pacienteResult" >
 			  </association>
 		</resultMap>
@@ -25,9 +25,42 @@
 			
 			
 			<insert id="crearMuestra"  parameterType="MuestraEntity"  keyProperty="idMuestra" >
-	 			INSERT INTO muestras
+	 			INSERT INTO muestra
 		 				(idAnalisis, tipo_muestra  ,numero)
 		 			 VALUES (#{idAnalisis}, #{tipo_muestra} ,#{numero})
 			</insert>
+			
+			
+			<select id="registrosResultados" resultMap="consultaResult"  parameterType="int" >
+		 				SELECT s.*,	p.nombre as paciente_nombre   FROM  analisis  a 
+						left join solicitudes s on a.idAnalisis = s.idSolicitud
+						left join pacientes  p on p.idPaciente = s.idPaciente
+				 		WHERE p.idEntidad = #{value} 	and  a.estatus = 'ABIERTA'
+			</select>
+			
+			
+			<insert id="crearResultado" parameterType="ResultadoEntity">
+					INSERT INTO resultado_analisis (idResultado,fecha,descripcion)
+						VALUES (#{idResultado}, #{fecha} , #{descripcion})
+			</insert>
+			
+			
+			<insert id="crearEvidencia" parameterType="EvidenciaEntity">
+				INSERT INTO evidencias_analisis  (nombre,path, fecha,idAnalisis,ext) 
+				VALUES  (#{nombre}, #{file} ,#{fecha} , #{idAnalisis}, #{ext}) 
+			</insert>
+			
+			
+			<select id="obtenerAnalisisPorId" parameterType="int"  resultType="AnalisisEntity">
+						SELECT a.*, p.nombre as paciente_nombre  
+				 				from analisis a  
+				 			left join solicitudes s on a.idAnalisis = s.idSolicitud
+				 			left join pacientes  p on p.idPaciente = s.idPaciente
+							where s.idSolicitud = #{value}
+			</select>
+			
+			<update  id="actualizarAnalisis" parameterType="AnalisisEntity"  >
+					update analisis set estatus = #{estatus}  where idAnalisis = #{idAnalisis}
+			</update>
 		
 </mapper>
