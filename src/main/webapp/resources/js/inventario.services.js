@@ -30,6 +30,13 @@ function InventarioServices ($http,constants) {
       });
   }
 
+  this.entregaReceta = function(recetas) {
+    return $http({
+        method: 'POST',
+        url: constants.url + '/solicitudes/recetas/entrega',
+        data : recetas
+      });
+  }
 
 }
 

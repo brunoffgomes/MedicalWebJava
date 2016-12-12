@@ -126,9 +126,8 @@ color:  #27C00A;
 	 color:#666666;
 }
 .head-last {
-
     padding:5px 20px 200px 20px;
-    color:#fff;
+    font-weight: bold;
 }
 #inicio {
     background-image: url("../img/inicio.jpg");

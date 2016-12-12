@@ -10,7 +10,7 @@ import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
-import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
+import com.pagp.medicalweb.db.entity.administrador.DetalleModuloEntity;
 import com.pagp.medicalweb.db.mappers.EntidadDb;
 
 @Repository
@@ -27,8 +27,12 @@ public class EntidadesDao {
 		return db.obtenerEntidadesAll();
 	}
 
-	public List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad) {
+	public List<DetalleModuloEntity> obtenerModulosEntidadActuales(int idEntidad) {
 		return db.obtenerModulosEntidadActuales(idEntidad);
+	}
+
+	public List<DetalleModuloEntity> obtenerModulosEntidadActivos(int idEntidad) {
+		return db.obtenerModulosEntidadActivos(idEntidad);
 	}
 
 	public EnfermeroEntity getEnfermero(int idEnfermero) {

@@ -12,10 +12,16 @@
 			SELECT * FROM entidades WHERE idAdministrador = #{value}
 	</select>
 	
-	<select id="obtenerModulosEntidadActuales" resultType="ModuloContratadoEntity" parameterType="int" >
-		SELECT * FROM moduloContratado
-		WHERE activo = #{value} 
-		and estatus = 1
+	<select id="obtenerModulosEntidadActuales" resultType="DetalleModuloEntity" parameterType="int" >
+					select mod.nombre ,m.precio,m.fechaInicio,m.fechaFin,m.activo from moduloContratado m 
+					left join modulos mod on mod.idModulo = m.idModulo
+					where m.idEntidad = #{value} order by m.fechaFin
+	</select>
+	
+		<select id="obtenerModulosEntidadActivos" resultType="DetalleModuloEntity" parameterType="int" >
+					select mod.nombre ,m.precio,m.fechaInicio,m.fechaFin,m.activo from moduloContratado m 
+					left join modulos mod on mod.idModulo = m.idModulo
+					where m.idEntidad = #{value} and m.activo = 1 order by m.fechaFin 
 	</select>
 	
 	 <insert id='crearSolicitud' parameterType='SolicitudEntity' useGeneratedKeys='true' keyProperty='idSolicitud'>
@@ -89,11 +95,7 @@
 				left join pacientes  p on p.idPaciente = s.idPaciente
 				 WHERE r.idReceta = #{value}
 		</select>
-	 	 
-	 	 <resultMap id="recetaResult" type="RecetaEntity">
-				<result column="paciente_nombre" property="nombre"/>
-		</resultMap>
-	 	 
+	 
 	 	 
 	 	 
 </mapper>

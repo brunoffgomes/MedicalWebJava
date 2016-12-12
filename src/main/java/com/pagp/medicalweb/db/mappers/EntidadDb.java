@@ -7,7 +7,7 @@ import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
-import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
+import com.pagp.medicalweb.db.entity.administrador.DetalleModuloEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.db.entity.receta.MedicamentoRecetaEntity;
 import com.pagp.medicalweb.db.entity.receta.RecetaEntity;
@@ -19,7 +19,9 @@ public interface EntidadDb {
 
 	List<EntidadEntity> obtenerEntidadesAll();
 
-	List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad);
+	List<DetalleModuloEntity> obtenerModulosEntidadActuales(int idEntidad);
+
+	List<DetalleModuloEntity> obtenerModulosEntidadActivos(int idEntidad);
 
 	void crearSolicitud(SolicitudEntity solicitudEntity);
 

@@ -58,6 +58,7 @@ public class JwtUtil {
 		claims.put("userId", u.getId() + "");
 		claims.put("role", u.getRole());
 		claims.put("idEntidad", u.getIdEntidad());
+		claims.put("modulos", u.getModulosActivos());
 
 		return Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.HS512, secret).compact();
 	}

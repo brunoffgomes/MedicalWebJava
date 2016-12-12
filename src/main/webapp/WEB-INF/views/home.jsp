@@ -94,6 +94,10 @@
     <script src="/js/entrega.controller.js"></script>
     <script src="/js/modal.services.js"></script>
     <script src="/js/miperfil.controller.js"></script>
+    <script src="/js/laboratorista.controller.js"></script>
+    <script src="/js/analisis.controller.js"></script>
+    <script src="/js/laboratorio.services.js"></script>
+    <script src="/js/resultados.controller.js"></script>
     <script src="/js/app.routes.js"></script>
   </body>
 </html>

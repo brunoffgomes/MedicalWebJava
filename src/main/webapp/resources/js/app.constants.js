@@ -13,13 +13,18 @@ angular
           {path:"#home",text:"Inicio"}, {path:"#pacientes",text:"Pacientes"} , {path:"#paciente",text:"Nuevo Paciente"}
         ],
         "ADMINISTRADOR_CE":[
-          {path:"#home",text:"Inicio"}, {path:"#registroDoctor",text:"Doctores"},{path:"#registroFarmacologo",text:"Farmacologo"},{path:"#registroEnfermero",text:"Enfermero"}
+          {path:"#home",text:"Inicio"}, {path:"#registroDoctor",text:"Doctores"},
+          {path:"#registroFarmacologo",text:"Farmacologo"},{path:"#registroEnfermero",text:"Enfermero"}
+          ,{path:"#registroLaboratorista",text:"Laboratorista"}
         ],
         "FARMACIA":[
           {path:"#home",text:"Inicio"}, {path:"#farmacia",text:"Farmacia"},{path:"#recetas",text:"Recetas"}
         ],
+        "LABORATORIO":[
+          {path:"#home",text:"Inicio"}, {path:"#analisis",text:"Análisis"},{path:"#resultados",text:"Resultados"}
+        ],
         "SUPERADMINISTRADOR":[
-            {path:"#home",text:"Inicio" },  {path:"#servicios",text:"Servicios" },  {path:"#modulos",text:"Modulos" }
+          {path:"#home",text:"Inicio"}, {path:"#entidadesServicio",text:"Entidades"}
         ],
         "tipoAdministracionMedicamentoEnum": [
           { "value": 0, "text": "Oral"},
