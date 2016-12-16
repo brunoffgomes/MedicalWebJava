@@ -15,17 +15,23 @@ public class FarmaciaServices {
 
 	@Autowired
 	private FarmaciaDao farmaciaDao;
-	
-	public List<MedicamentoEntity> obtenerMedicamentosPorEntidad(int idEntidad){
+
+	public List<MedicamentoEntity> obtenerMedicamentosPorEntidad(int idEntidad) {
 		return farmaciaDao.obtenerMedicamentosPorEntidad(idEntidad);
 	}
-	public MedicamentoEntity guardarMedicamento(MedicamentoEntity medicamentoEntity){
+
+	public List<MedicamentoEntity> obtenerMedicamentosPorEntidadDisponibles(int idEntidad) {
+		return farmaciaDao.obtenerMedicamentosPorEntidadDisponibles(idEntidad);
+	}
+
+	public MedicamentoEntity guardarMedicamento(MedicamentoEntity medicamentoEntity) {
 		farmaciaDao.guardarMedicamento(medicamentoEntity);
-		 return medicamentoEntity;
+		return medicamentoEntity;
 	}
-	public MedicamentoEntity actulizarMedicamento(MedicamentoEntity medicamentoEntity){
+
+	public MedicamentoEntity actulizarMedicamento(MedicamentoEntity medicamentoEntity) {
 		farmaciaDao.actulizarMedicamento(medicamentoEntity);
-		 return medicamentoEntity;	
+		return medicamentoEntity;
 	}
-	
+
 }

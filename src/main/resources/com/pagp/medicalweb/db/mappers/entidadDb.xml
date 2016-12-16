@@ -80,22 +80,49 @@
 				SELECT * FROM administradoresCE WHERE idAdministradorCE = #{value}
 		</select>
 	 	 
-	 	 <select id="getRecetas" resultType="RecetaEntity" parameterType="int" >
-				SELECT * FROM recetas r
-				left join  diagnostico  d on r.idReceta = d.idDiagnostico
+	 	 <select id="getRecetas" resultMap="recetaResult" parameterType="int" >
+				SELECT r.*, 
+						p.nombre as paciente_nombre,
+			 			p.apellido_paterno as paciente_apellido_paterno ,
+			 			p.apellido_materno as paciente_apellido_materno   FROM recetas r
+				left join diagnostico  d on r.idReceta = d.idDiagnostico
 				left join solicitudes s on s.idSolicitud = d.idDiagnostico
 				left join pacientes  p on p.idPaciente = s.idPaciente
 				 WHERE p.idEntidad = #{value} 	and r.estatus = 'ABIERTA'
 		</select>
 	 	 
-	 	  <select id="getReceta" resultType="RecetaEntity" parameterType="int" >
-				SELECT * FROM recetas r
+	 	  <select id="getReceta" resultMap="recetaMedicamentoResult" parameterType="int" >
+			SELECT  r.*, 
+						p.nombre as paciente_nombre,
+			 			p.apellido_paterno as paciente_apellido_paterno ,
+			 			p.apellido_materno as paciente_apellido_materno   FROM recetas r
 				left join  diagnostico  d on r.idReceta = d.idDiagnostico
 				left join solicitudes s on s.idSolicitud = d.idDiagnostico
 				left join pacientes  p on p.idPaciente = s.idPaciente
 				 WHERE r.idReceta = #{value}
 		</select>
 	 
-	 	 
+	 	 <resultMap id="recetaResult" type="RecetaEntity"  autoMapping="true">
+	 	 		   	<id property="idReceta" column="idReceta"/>
+			  	<association property="paciente" resultMap="pacienteResult"  columnPrefix="paciente_" ></association>
+		</resultMap>
+	
+		 <resultMap id="recetaMedicamentoResult" type="RecetaEntity" autoMapping="true">
+		 	 	 	<id property="idReceta" column="idReceta"/>
+				  	<association property="paciente" resultMap="pacienteResult" columnPrefix="paciente_" ></association>
+					<collection property="medicamentos"  column="idReceta"  ofType="MedicamentoRecetaEntity" select="selectMedicamentosByReceta"/>
+			</resultMap>
+	
+	
+			<select id="selectMedicamentosByReceta" resultType="MedicamentoRecetaEntity"  parameterType="int">
+				SELECT * FROM receta_medicamento WHERE idReceta = #{value}
+			</select>
+	
+		 <resultMap id="pacienteResult" type="PacienteEntity" autoMapping="true">
+		   	<id property="idPaciente" column="idPaciente"/>
+			<result column="nombre" property="nombre"/>
+			<result column="apellido_paterno" property="apellido_paterno"/>
+			<result column="apellido_materno" property="apellido_materno"/>		
+		</resultMap>
 	 	 
 </mapper>

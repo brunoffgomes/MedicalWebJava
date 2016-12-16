@@ -7,9 +7,11 @@ import com.pagp.medicalweb.db.entity.MedicamentoEntity;
 public interface FarmaciaDb {
 
 	List<MedicamentoEntity> getMedicamentosByEntidad(int idEntidad);
-	
+
+	List<MedicamentoEntity> obtenerMedicamentosPorEntidadDisponibles(int idEntidad);
+
 	void insertMedicamento(MedicamentoEntity MedicamentoEntity);
-	
+
 	void updateMedicamento(MedicamentoEntity idEntidad);
 
 }

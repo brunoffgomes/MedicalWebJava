@@ -29,6 +29,12 @@ public class FarmaciaController {
 		return farmaciaServices.obtenerMedicamentosPorEntidad(usuario.getIdEntidad());
 	}
 
+	@RequestMapping(value = "/medicamentos/disponibles", method = RequestMethod.GET)
+	public List<MedicamentoEntity> obtenerMedicamentosPorEntidadDisponibles() {
+		AuthenticatedUser usuario = authenticationFacade.getAuthentication();
+		return farmaciaServices.obtenerMedicamentosPorEntidadDisponibles(usuario.getIdEntidad());
+	}
+
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public MedicamentoEntity guardarMedicamento(@RequestBody MedicamentoEntity medicamentoEntity) {
 		return farmaciaServices.guardarMedicamento(medicamentoEntity);

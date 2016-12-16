@@ -17,5 +17,13 @@
 		    nombre = #{nombre}, activo = #{activo}, descripcion = #{descripcion}, cantidad = #{cantidad}
 		  where idMedicamento = #{idMedicamento}
  	 </update>
+ 	 
+ 	 
+	 <select id="obtenerMedicamentosPorEntidadDisponibles" resultType="MedicamentoEntity" parameterType="int" >
+				SELECT * FROM medicamento WHERE idEntidad = #{value} and cantidad > 0 
+				order by nombre
+	</select>
+ 	 
+ 	 
 
 </mapper>
