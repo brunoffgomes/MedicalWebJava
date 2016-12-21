@@ -1,5 +1,6 @@
 package com.pagp.medicalweb.web.dto.solicitud;
 
+import com.pagp.medicalweb.services.auditoria.AuditingTargetPaciente;
 import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
 
 public class DiagnosticoFormDto {
@@ -8,7 +9,17 @@ public class DiagnosticoFormDto {
 	private int idDoctor;
 	private String diagnostico;
 	private String tratamiento;
-	private EstatusSolicitudEnum estatus =  EstatusSolicitudEnum.ABIERTA;
+	private EstatusSolicitudEnum estatus = EstatusSolicitudEnum.ABIERTA;
+	@AuditingTargetPaciente
+	private int idPaciente;
+
+	public int getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
 
 	public int getIdDiagnostico() {
 		return idDiagnostico;

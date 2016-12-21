@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
 <!DOCTYPE html>
 <html ng-app="medicalWeb">
   <head>
@@ -65,8 +66,8 @@
     <script src="/assets/js/custom.js"></script>
     <script src="/js/app.js">   </script>
     <script src="/js/app.constants.js"></script>
-    <script src="/js/navbar.controller.js"></script>
     <script src="/js/common.directives.js"></script>
+    <script src="/js/auth.services.js"></script>
     <script src="/js/cps.service.js"></script>
     <script src="/js/autocomplete.js"></script>
     <script src="/js/home.controller.js"></script>
@@ -94,6 +95,12 @@
     <script src="/js/entrega.controller.js"></script>
     <script src="/js/modal.services.js"></script>
     <script src="/js/miperfil.controller.js"></script>
+    <script src="/js/laboratorista.controller.js"></script>
+    <script src="/js/analisis.controller.js"></script>
+    <script src="/js/laboratorio.services.js"></script>
+    <script src="/js/resultados.controller.js"></script>
+    <script src="/js/detalleentidad.controller.js"></script>
+    <script src="/js/navbar.controller.js"></script>
     <script src="/js/app.routes.js"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <global-method-security pre-post-annotations="enabled" /> 
+    <global-method-security pre-post-annotations="enabled"  /> 
     
     <bean:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<bean:property name="location">
@@ -15,10 +15,11 @@
     
     <http pattern="/api/registro/registroAdministrador" security="none"/>  
     <http pattern="/api/auth/login" security="none"/>
+    <http pattern="/api/registro/valid/email" security="none"/> 
     <http pattern="/" security="none"/>
     
 
-    <http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless">
+    <http pattern="/api/**" entry-point-ref="restAuthenticationEntryPoint" create-session="stateless" use-expressions="true">
         <csrf disabled="true"/> 
         <custom-filter ref="CORSFilter" after="PRE_AUTH_FILTER"/>        
         <custom-filter before="FORM_LOGIN_FILTER" ref="jwtAuthenticationFilter"/> 

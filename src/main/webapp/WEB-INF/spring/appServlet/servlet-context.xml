@@ -4,10 +4,13 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -23,7 +26,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.pagp.medicalweb" />
+	<context:component-scan base-package="com.pagp.medicalweb">
+		<context:include-filter type="aspectj"
+		expression="com.pagp.medicalweb.services.auditoria.AuditoriaAspect" />
+	</context:component-scan>
+		
 	<cors>
 		<mapping path="/**" allowed-methods="*" allow-credentials="true"/>
 	</cors>
@@ -62,5 +69,10 @@
   		<beans:property name="basePackage" value="com.pagp.medicalweb.db.mappers" />
 	</beans:bean>
 	
+	<aop:aspectj-autoproxy/>   
 	
+	<beans:bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+        
+        
 </beans:beans>

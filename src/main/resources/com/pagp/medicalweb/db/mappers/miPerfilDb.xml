@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pagp.medicalweb.db.mappers.MiPerfilDb">
+	
+		<select id="obtenerPerfilUsuario" resultType="MiPerfilEntity"  parameterType="int" >
+			SELECT id_usuario as idUser,nombre,apPaterno,apMaterno,
+			nacimiento as fechaNacimiento, email,tipo FROM "dbo"."usuario"
+			WHERE id_usuario = #{value}
+		</select>
+		
+		
+		<update id="cambiarPassword"  parameterType="CambiarPasswordEntity" >
+			UPDATE usuario set password = #{newPassword} 
+			where id_usuario = #{id_usuario}  and password = #{oldPassword}
+		</update>
+</mapper>

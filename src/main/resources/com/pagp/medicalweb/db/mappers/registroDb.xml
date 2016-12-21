@@ -46,6 +46,11 @@
               		VALUES (#{idFarmacologo},#{cedula_profesional},#{idEntidad})
  	 </insert>
  	 
+ 	 <insert id='insertLaboratorista' parameterType='LaboratoristaEntity'  keyProperty='idLaboratorista'>
+	        INSERT INTO laboratoristas  (idLaboratorista,cedula_profesional,idEntidad) 
+              		VALUES (#{idLaboratorista},#{cedula_profesional},#{idEntidad})
+ 	 </insert>
+ 	 
  	 
  	 <insert id='insertAdministradorCE' parameterType='AdministradorCEEntity' keyProperty='id_administrador'>
 	   INSERT INTO administradoresCE

@@ -6,6 +6,7 @@ public class JwtUserDto {
 	private String username;
 	private String role;
 	private int idEntidad;
+	private String[] modulosActivos;
 
 	public int getId() {
 		return id;
@@ -37,5 +38,13 @@ public class JwtUserDto {
 
 	public void setIdEntidad(int idEntidad) {
 		this.idEntidad = idEntidad;
+	}
+
+	public String[] getModulosActivos() {
+		return modulosActivos;
+	}
+
+	public void setModulosActivos(String[] modulosActivos) {
+		this.modulosActivos = modulosActivos;
 	}
 }

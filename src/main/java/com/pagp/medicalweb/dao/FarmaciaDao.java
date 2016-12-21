@@ -18,6 +18,10 @@ public class FarmaciaDao {
 		return db.getMedicamentosByEntidad(idEntidad);
 	}
 
+	public List<MedicamentoEntity> obtenerMedicamentosPorEntidadDisponibles(int idEntidad) {
+		return db.obtenerMedicamentosPorEntidadDisponibles(idEntidad);
+	}
+
 	public MedicamentoEntity guardarMedicamento(MedicamentoEntity medicamentoEntity) {
 		db.insertMedicamento(medicamentoEntity);
 		return medicamentoEntity;
@@ -26,5 +30,9 @@ public class FarmaciaDao {
 	public MedicamentoEntity actulizarMedicamento(MedicamentoEntity medicamentoEntity) {
 		db.updateMedicamento(medicamentoEntity);
 		return medicamentoEntity;
+	}
+
+	public MedicamentoEntity obtenerMedicamento(int idMedicamento) {
+		return db.obtenerMedicamento(idMedicamento);
 	}
 }

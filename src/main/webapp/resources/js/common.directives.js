@@ -78,12 +78,54 @@ var codigoPostal = function() {
         }
     }
 };
+var fileModel =  function ($parse) {
+        return {
+           restrict: 'A',
+           link: function(scope, element, attrs) {
+              var model = $parse(attrs.fileModel);
+              var modelSetter = model.assign;
 
+              element.bind('change', function(){
+                 scope.$apply(function(){
+                    console.log(element[0].files[0])
+                    modelSetter(scope, element[0].files[0]);
+                 });
+              });
+           }
+        };
+}
+
+
+var pacienteLabel = function () {
+      return {
+          template: '<h3>Paciente {{pacienteInfo.nombre | capitalize }} {{pacienteInfo.apellido_paterno  | capitalize }} {{pacienteInfo.apellido_materno | capitalize }} </h3>',
+          restrict: 'E',
+          scope: {
+            pacienteInfo : '=paciente'
+          }
+    };
+}
+
+var capitalize = function() {
+  return function(input, scope) {
+    if (input != undefined)
+      input = input.toLowerCase();
+    else
+      input = '';
+    if(input.length > 2)
+      return input.substring(0,1).toUpperCase() + input.substring(1);
+    else
+      return input;
+  };
+};
 
 
 angular.module("app.directives")
+.directive("fileModel", fileModel)
 .directive("uniqueEmail", uniqueEmail)
 .directive("phone", phoneValid)
 .directive("rfc", rfcValid)
 .directive("codigoPostal", codigoPostal)
+.directive("pacienteLabel",pacienteLabel)
+.filter("capitalize", capitalize)
 .directive("compareTo", compareTo);

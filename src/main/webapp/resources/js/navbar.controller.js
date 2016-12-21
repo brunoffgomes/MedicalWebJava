@@ -1,4 +1,4 @@
-function NavBarController($scope,$location,$rootScope,constants) {
+function NavBarController($scope,$location,$rootScope,constants,AuthServices) {
     var vm = this;
     vm.logged = $rootScope.logged;
     vm.isActive = function (viewLocation) {
@@ -7,13 +7,39 @@ function NavBarController($scope,$location,$rootScope,constants) {
 
     $rootScope.$on("logged", function(){
         vm.logged = $rootScope.logged;
-        if($rootScope.logged)
-        vm.modulos = constants[$rootScope.userData.role];
-    });
+        if($rootScope.logged){
+            var modulos = constants[$rootScope.userData.role];
+            var modulosContratados = $rootScope.userData.modulos;
+            var filtered = modulos.filter(function(item) {
+                if(!item.modulo)
+                  return true;
+                return modulosContratados.indexOf(item.modulo) != -1
+            });
+            AuthServices.obtenerMiPerfil()
+              .then(function(response) {
+                $rootScope.miperfil =  response.data
+              });
+            vm.modulos = filtered;
+          }
+       });
 
     vm.modulos = []
-    if($rootScope.logged)
-      vm.modulos = constants[$rootScope.userData.role];
+    if($rootScope.logged){
+      var modulos = constants[$rootScope.userData.role];
+      var modulosContratados = $rootScope.userData.modulos;
+      var filtered = modulos.filter(function(item) {
+          if(!item.modulo)
+            return true;
+          return modulosContratados.indexOf(item.modulo) != -1
+      });
+      AuthServices.obtenerMiPerfil()
+        .then(function(response) {
+          $rootScope.miperfil =  response.data
+        });
+      vm.modulos = filtered;
+    }
+
+
 
 
 
@@ -26,5 +52,5 @@ function NavBarController($scope,$location,$rootScope,constants) {
     }
 }
 
-NavBarController.$inject = ["$scope","$location","$rootScope","constants"];
+NavBarController.$inject = ["$scope","$location","$rootScope","constants","AuthServices"];
 angular.module("app.controllers").controller("NavBarController", NavBarController);

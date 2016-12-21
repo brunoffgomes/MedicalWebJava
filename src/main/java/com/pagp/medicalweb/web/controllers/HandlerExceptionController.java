@@ -2,6 +2,7 @@ package com.pagp.medicalweb.web.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -15,5 +16,12 @@ public class HandlerExceptionController {
 		ErrorFormDto error = new ErrorFormDto("Please contact your administrator");
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<ErrorFormDto> exceptionAccessDeniedException(AccessDeniedException ex) {
+		ErrorFormDto error = new ErrorFormDto("Accesos denegado");
+		error.setErrorCode(HttpStatus.FORBIDDEN.value());
+		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.FORBIDDEN);
 	}
 }

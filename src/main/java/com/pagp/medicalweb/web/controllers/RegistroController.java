@@ -18,6 +18,7 @@ import com.pagp.medicalweb.web.dto.registro.DoctorFormDto;
 import com.pagp.medicalweb.web.dto.registro.EnfermeroFormDto;
 import com.pagp.medicalweb.web.dto.registro.EntidadMedicaFormDto;
 import com.pagp.medicalweb.web.dto.registro.FarmacologoFormDto;
+import com.pagp.medicalweb.web.dto.registro.LaboratoristaFormDto;
 
 @RestController
 @RequestMapping("/api/registro")
@@ -40,36 +41,48 @@ public class RegistroController {
 		registroServices.crearSuperAdministrador(usuarioBaseFormDto);
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping(value = "/registroAdministradorCe", method = RequestMethod.POST)
 	public void registroAdministradorCE(@RequestBody AdministradorCEFormDto administradorCEFormDto) {
 		registroServices.crearAdministradorCE(administradorCEFormDto);
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping(value = "/registroClinica", method = RequestMethod.POST)
 	public EntidadMedicaFormDto registroClinica(@RequestBody EntidadMedicaFormDto entidadMedicaFormDto) {
 		registroServices.crearClinica(entidadMedicaFormDto);
 		return entidadMedicaFormDto;
 	}
 
+	@PreAuthorize("hasRole('ENFERMERO')")
 	@RequestMapping(value = "/registroPaciente", method = RequestMethod.POST)
 	public PacienteEntity registroPaciente(@RequestBody PacienteEntity pacienteEntity) {
 		registroServices.crearPaciente(pacienteEntity);
 		return pacienteEntity;
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping(value = "/registroDoctor", method = RequestMethod.POST)
 	public void registroDoctor(@RequestBody DoctorFormDto doctorFormDto) {
 		registroServices.crearDoctor(doctorFormDto);
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping(value = "/registroEnfermero", method = RequestMethod.POST)
 	public void registroEnfermero(@RequestBody EnfermeroFormDto enfermeroFormDto) {
 		registroServices.crearEnfermero(enfermeroFormDto);
 	}
 
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping(value = "/registroFarmacologo", method = RequestMethod.POST)
 	public void registroFarmacologo(@RequestBody FarmacologoFormDto farmacologoFormDto) {
 		registroServices.crearFarmacologo(farmacologoFormDto);
+	}
+
+	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	@RequestMapping(value = "/registroLaboratorista", method = RequestMethod.POST)
+	public void registroFarmacologo(@RequestBody LaboratoristaFormDto laboratoristaFormDto) {
+		registroServices.crearLaboratorista(laboratoristaFormDto);
 	}
 
 	@RequestMapping(value = "/valid/email", method = RequestMethod.GET)

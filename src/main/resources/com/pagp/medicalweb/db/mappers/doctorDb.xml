@@ -4,7 +4,7 @@
 <mapper namespace="com.pagp.medicalweb.db.mappers.DoctorDb">
 
 	<select id="getDoctoresByEntidad" resultType="DoctorEntity" parameterType="int" >
-		SELECT doc.*, us.nombre
+		SELECT doc.*,  us.nombre
 		 FROM doctores doc 
 		left join usuario us on us.id_usuario = doc.idDoctor 
 		WHERE idEntidad = #{value}
@@ -16,28 +16,40 @@
 
 
 	<select id="getConsultas" resultMap="consultaResult"  parameterType="int" >
- 			SELECT s.*,	p.nombre as paciente_nombre  
+ 			SELECT s.*,
+ 			p.nombre as paciente_nombre,
+ 			p.apellido_paterno as paciente_apellido_paterno ,
+ 			p.apellido_materno as paciente_apellido_materno  
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
 			where idEntidad = #{idEntidad}  and tipo_solicitud =  'CONSULTA'  and estatus = 'ABIERTA'
 	</select>
 	
 	
 	<select id="getConsulta" resultMap="consultaResult"  parameterType="int" >
- 			SELECT s.*,	p.nombre as paciente_nombre  
+ 			SELECT s.*,
+ 			p.nombre as paciente_nombre,
+ 			p.apellido_paterno as paciente_apellido_paterno ,
+ 			p.apellido_materno as paciente_apellido_materno  
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
 			where idSolicitud = #{value} 
 	</select>
 
 	<select id="getDiagnosticos" resultMap="diagnosticoResult" parameterType="int" >
-			SELECT d.*,p.nombre as paciente_nombre  
-				from diagnostico  d
+			SELECT d.*, 
+			p.nombre as paciente_nombre,
+ 			p.apellido_paterno as paciente_apellido_paterno ,
+ 			p.apellido_materno as paciente_apellido_materno  
+			from diagnostico  d
 			left join solicitudes s on s.idSolicitud = d.idDiagnostico
 			left join pacientes  p on p.idPaciente = s.idPaciente
 			where idDoctor = #{value}   and d.estatus = 'ABIERTA'
 	</select>
 	
 	<select id="getDiagnostico" resultMap="diagnosticoResult" parameterType="int" >
-			SELECT d.*,p.nombre as paciente_nombre  
+			SELECT d.*, 
+			p.nombre as paciente_nombre,
+ 			p.apellido_paterno as paciente_apellido_paterno ,
+ 			p.apellido_materno as paciente_apellido_materno  
 			from diagnostico  d
 			left join solicitudes s on s.idSolicitud = d.idDiagnostico
 			left join pacientes  p on p.idPaciente = s.idPaciente
@@ -57,7 +69,10 @@
 	</resultMap>
 	
 	<resultMap id="pacienteResult" type="PacienteEntity">
+		<id column="paciente_idPaciente" property="idPaciente"  />
 		<result column="paciente_nombre" property="nombre"/>
+		<result column="paciente_apellido_paterno" property="apellido_paterno"/>
+		<result column="paciente_apellido_materno" property="apellido_materno"/>		
 	</resultMap>
 
 </mapper>

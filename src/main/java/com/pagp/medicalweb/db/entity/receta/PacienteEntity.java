@@ -1,7 +1,10 @@
 package com.pagp.medicalweb.db.entity.receta;
 
+import com.pagp.medicalweb.services.auditoria.AuditingTargetPaciente;
+
 public class PacienteEntity {
 
+	@AuditingTargetPaciente
 	private int idPaciente;
 	private String curp;
 	private String nombre;

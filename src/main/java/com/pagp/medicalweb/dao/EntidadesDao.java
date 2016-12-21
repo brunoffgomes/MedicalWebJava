@@ -9,7 +9,8 @@ import com.pagp.medicalweb.db.entity.AdministradorCEEntity;
 import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.EntidadEntity;
 import com.pagp.medicalweb.db.entity.FarmacologoEntity;
-import com.pagp.medicalweb.db.entity.ModuloContratadoEntity;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
+import com.pagp.medicalweb.db.entity.administrador.DetalleModuloEntity;
 import com.pagp.medicalweb.db.mappers.EntidadDb;
 
 @Repository
@@ -22,24 +23,32 @@ public class EntidadesDao {
 		return db.obtenerEntidades(idAdministrador);
 	}
 
-	public List<ModuloContratadoEntity> obtenerModulosEntidadActuales(int idEntidad) {
+	public List<EntidadEntity> obtenerEntidades() {
+		return db.obtenerEntidadesAll();
+	}
+
+	public List<DetalleModuloEntity> obtenerModulosEntidadActuales(int idEntidad) {
 		return db.obtenerModulosEntidadActuales(idEntidad);
 	}
-	
+
+	public List<DetalleModuloEntity> obtenerModulosEntidadActivos(int idEntidad) {
+		return db.obtenerModulosEntidadActivos(idEntidad);
+	}
 
 	public EnfermeroEntity getEnfermero(int idEnfermero) {
 		return db.getEnfermero(idEnfermero);
 	}
-	
 
 	public FarmacologoEntity getFarmacologo(int idFarmacologoo) {
 		return db.getFarmacologo(idFarmacologoo);
 	}
-	
-	
+
 	public AdministradorCEEntity getAdministradorCE(int idAdministradorCE) {
 		return db.getAdministradorCE(idAdministradorCE);
 	}
 
-	
+	public LaboratoristaEntity getLaboratorista(int idLaboratorista) {
+		return db.getLaboratorista(idLaboratorista);
+	}
+
 }

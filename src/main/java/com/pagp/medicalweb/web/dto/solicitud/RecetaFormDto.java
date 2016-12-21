@@ -3,11 +3,23 @@ package com.pagp.medicalweb.web.dto.solicitud;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pagp.medicalweb.services.auditoria.AuditingTargetPaciente;
 import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
 
 public class RecetaFormDto {
 
 	private int idReceta;
+	@AuditingTargetPaciente
+	private int idPaciente;
+
+	public int getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
+
 	private String comentarios;
 	private List<MedicamentoRecetaFormDto> medicamentos = new ArrayList<>();
 	private EstatusSolicitudEnum estatus = EstatusSolicitudEnum.ABIERTA;
