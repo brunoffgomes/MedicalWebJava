@@ -31,7 +31,6 @@ public class EntidadesController {
 		return entidadesServices.obtenerModulosEntidadActuales(idEntidad);
 	}
 
-	@PreAuthorize("hasRole('SUPERADMINISTRADOR')")
 	@RequestMapping(method = RequestMethod.GET)
 	public List<EntidadEntity> obtenerEntidades() {
 		return entidadesServices.obtenerEntidades();

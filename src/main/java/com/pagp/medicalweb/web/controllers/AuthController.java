@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pagp.medicalweb.services.api.AuthServices;
+import com.pagp.medicalweb.services.impl.AuthServices;
 import com.pagp.medicalweb.services.models.UserLoginServicesInDto;
 import com.pagp.medicalweb.services.models.UserLoginServicesOutDto;
 import com.pagp.medicalweb.web.dto.UserLogginFormInDto;

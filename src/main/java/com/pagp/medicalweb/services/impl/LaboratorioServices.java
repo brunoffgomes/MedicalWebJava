@@ -6,6 +6,7 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,8 +36,16 @@ import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
 @Transactional
 public class LaboratorioServices {
 
-	public static final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=misrecursosprueba5504;AccountKey=Ev6H570opCvvVvbanrFsX6aMFNZ3DHioKV/u4XprYmKGg4LBlpinfWmYqOBwKse5UEc3Z+53Ip/Xf1JCuqzfDQ==";
-	public static final String CONTAINER = "analisis";
+	/* Cadena de conexion al storage de Azure */
+	@Value("${storageConnectionString}")
+	private String storageConnectionString;
+
+	/* Contenedor del storage de Azure */
+	@Value("${containerStorage}")
+	private String CONTAINER;
+
+	private String DOT = ".";
+
 	@Autowired
 	private LaboratorioDao laboratorioDao;
 
@@ -88,30 +97,36 @@ public class LaboratorioServices {
 		solicitudesDao.actualizarSolicitud(solicitudEntity);
 	}
 
+	// Crear el resultado de analisis de paciente
 	@Auditable(actionType = AuditingActionTypeEnum.CREAR_RESULTADO)
 	public void crearResultado(MultipartFile[] files, ResultadoFormDto resultadoFormDto) {
+
 		ResultadoEntity resultadoEntity = new ResultadoEntity();
 		resultadoEntity.setFecha(new Date());
 		resultadoEntity.setIdResultado(resultadoFormDto.getIdResultado());
 		resultadoEntity.setDescripcion(resultadoFormDto.getObservaciones());
-
 		laboratorioDao.crearResultado(resultadoEntity);
 
+		/*
+		 * Gaurdar las evidencias del resultado del analisis
+		 */
 		for (int i = 0; i < files.length; i++) {
 			MultipartFile file = files[i];
 			EvidenciaFormDto evidenciaFormDto = resultadoFormDto.getEvidencias().get(i);
+
+			/* Guardar el archivo en el storage de Azure con el nombre unico */
 			String fileUUID = guardaArchivoAzure(file);
 			EvidenciaEntity evidenciaEntity = new EvidenciaEntity();
 			evidenciaEntity.setFile(fileUUID);
 			evidenciaEntity.setNombre(evidenciaFormDto.getNombre());
 			evidenciaEntity.setIdAnalisis(resultadoEntity.getIdResultado());
 			evidenciaEntity.setFecha(new Date());
-			String[] split = file.getOriginalFilename().split(Pattern.quote("."));
+			String[] split = file.getOriginalFilename().split(Pattern.quote(DOT));
 			evidenciaEntity.setExt(split[split.length - 1]);
 
 			laboratorioDao.crearEvidencia(evidenciaEntity);
 		}
-
+		/* Guardar el nuevo estatus a CERRADA del analisis */
 		AnalisisEntity analisisEntity = laboratorioDao.obtenerAnalisisPorId(resultadoEntity.getIdResultado());
 		analisisEntity.setEstatus(EstatusSolicitudEnum.CERRADA.toString());
 
@@ -119,11 +134,12 @@ public class LaboratorioServices {
 
 	}
 
+	/* Metodo para guardar un archivo en el storage en Azure */
 	public String guardaArchivoAzure(MultipartFile file) {
 		try {
 			CloudStorageAccount account = CloudStorageAccount.parse(storageConnectionString);
 			CloudBlobClient serviceClient = account.createCloudBlobClient();
-			CloudBlobContainer container = serviceClient.getContainerReference("analisis");
+			CloudBlobContainer container = serviceClient.getContainerReference(CONTAINER);
 			container.createIfNotExists();
 			String uniqueID = UUID.randomUUID().toString();
 			CloudBlockBlob blob = container.getBlockBlobReference(uniqueID);

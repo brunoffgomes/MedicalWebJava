@@ -15,7 +15,6 @@ import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.UsuarioEntity;
 import com.pagp.medicalweb.db.entity.administrador.DetalleModuloEntity;
-import com.pagp.medicalweb.services.api.AuthServices;
 import com.pagp.medicalweb.services.models.UserLoginServicesInDto;
 import com.pagp.medicalweb.services.models.UserLoginServicesOutDto;
 import com.pagp.medicalweb.web.core.JwtUtil;
@@ -23,8 +22,14 @@ import com.pagp.medicalweb.web.core.dto.JwtUserDto;
 import com.pagp.medicalweb.web.dto.core.TipoUsuarioEnum;
 import com.pagp.medicalweb.web.enums.UserLoginEstatusEnum;
 
+/*
+ * AuthServices
+ *  Servicio para autenticar un usuario,
+ *  Genera el token de usuario con sus propiedades
+ *  En caso de error se regresa el error de autenticacion
+ * */
 @Service
-public class AuthServicesImpl implements AuthServices {
+public class AuthServices {
 
 	@Autowired
 	private UsuariosDao usuariosDao;
@@ -38,27 +43,38 @@ public class AuthServicesImpl implements AuthServices {
 	@Autowired
 	private JwtUtil jwtUtil;
 
-	@Override
+	/*
+	 * Valida la credenciales del usuario y generar el token de acceso en caso
+	 * de error regresa la causa del error de acceso
+	 * 
+	 */
 	public UserLoginServicesOutDto login(UserLoginServicesInDto user) {
+		// Obtener un usuario por su email
 		UsuarioEntity usuarioEntity = usuariosDao.getUsuarioByEmail(user.getUsername());
 		UserLoginServicesOutDto userLoginServicesOutDto = new UserLoginServicesOutDto();
 		if (usuarioEntity == null) {
+			// Dar respuesta para cuando el usuario no existe
 			userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.INEXISTENTE);
 		} else {
 
 			if (usuarioEntity.getPassword().equals(user.getPassword())) {
 
+				// Crear datos para token de acceso al sistema
 				JwtUserDto jwtUserDto = new JwtUserDto();
 				jwtUserDto.setId(usuarioEntity.getId_usuario());
 				jwtUserDto.setUsername(usuarioEntity.getEmail());
 				jwtUserDto.setRole(usuarioEntity.getTipo());
 
+				// Obtener el tipo de usuario
 				TipoUsuarioEnum tipoUsuarioEnum = TipoUsuarioEnum.valueOf(usuarioEntity.getTipo());
 				int idUsuario = usuarioEntity.getId_usuario();
 
+				// Si el tipo de usuario no es administrador
 				if (!TipoUsuarioEnum.ADMINISTRADOR.equals(tipoUsuarioEnum)
 						|| !TipoUsuarioEnum.SUPERADMINISTRADOR.equals(tipoUsuarioEnum)) {
 					switch (tipoUsuarioEnum) {
+					// Por tipo de usuario se obtiene sus caracteristicas
+					// propias
 					case DOCTOR:
 						DoctorEntity doctorEntity = doctoresDao.getDoctor(idUsuario);
 						jwtUserDto.setIdEntidad(doctorEntity.getIdEntidad());
@@ -85,22 +101,24 @@ public class AuthServicesImpl implements AuthServices {
 						break;
 					}
 
+					// Se obtiene los detalles de modulos para el usuario que
+					// tiene activos para el usuario
 					List<DetalleModuloEntity> modulos = entidadesDao
 							.obtenerModulosEntidadActivos(jwtUserDto.getIdEntidad());
-
 					String[] modulosActivos = new String[modulos.size()];
 
-					for (int i = 0; i < modulos.size(); i++) {
+					for (int i = 0; i < modulos.size(); i++)
 						modulosActivos[i] = modulos.get(i).getNombre();
-					}
-
 					jwtUserDto.setModulosActivos(modulosActivos);
 
 				}
+				// Generar el token de acceso para acceso
 				String token = jwtUtil.generateToken(jwtUserDto);
 				userLoginServicesOutDto.setToken(token);
+				// Dar respuesta de usuario activo
 				userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.ACTIVO);
 			} else {
+				// Dar respuesta de credenciales incorrectas
 				userLoginServicesOutDto.setEstatus(UserLoginEstatusEnum.BAD_CREDENTIAL);
 			}
 
