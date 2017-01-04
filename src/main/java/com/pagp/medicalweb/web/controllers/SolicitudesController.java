@@ -28,7 +28,7 @@ public class SolicitudesController {
 	@Autowired
 	public AuthenticationFacade authenticationFacade;
 
-	@PreAuthorize("hasRole('DOCTOR')")
+	@PreAuthorize("hasRole('ENFERMERO')")
 	@RequestMapping(value = "/crearSolicitud", method = RequestMethod.POST)
 	public void crearSolicitud(@RequestBody SolicitudFormDto solicitudFormDto) {
 		solicitudesServices.crearSolicitud(solicitudFormDto);

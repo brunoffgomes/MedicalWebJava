@@ -43,10 +43,12 @@ public class AuthServices {
 	@Autowired
 	private JwtUtil jwtUtil;
 
+	private String rolePrefix = "ROLE_";
+
 	/*
 	 * Valida la credenciales del usuario y generar el token de acceso en caso
 	 * de error regresa la causa del error de acceso
-	 * 
+	 *
 	 */
 	public UserLoginServicesOutDto login(UserLoginServicesInDto user) {
 		// Obtener un usuario por su email
@@ -63,7 +65,7 @@ public class AuthServices {
 				JwtUserDto jwtUserDto = new JwtUserDto();
 				jwtUserDto.setId(usuarioEntity.getId_usuario());
 				jwtUserDto.setUsername(usuarioEntity.getEmail());
-				jwtUserDto.setRole(usuarioEntity.getTipo());
+				jwtUserDto.setRole(rolePrefix.concat(usuarioEntity.getTipo()));
 
 				// Obtener el tipo de usuario
 				TipoUsuarioEnum tipoUsuarioEnum = TipoUsuarioEnum.valueOf(usuarioEntity.getTipo());
