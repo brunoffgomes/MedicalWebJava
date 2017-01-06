@@ -61,25 +61,25 @@ public class RegistroController {
 		return pacienteEntity;
 	}
 
-	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping(value = "/registroDoctor", method = RequestMethod.POST)
 	public void registroDoctor(@RequestBody DoctorFormDto doctorFormDto) {
 		registroServices.crearDoctor(doctorFormDto);
 	}
 
-	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping(value = "/registroEnfermero", method = RequestMethod.POST)
 	public void registroEnfermero(@RequestBody EnfermeroFormDto enfermeroFormDto) {
 		registroServices.crearEnfermero(enfermeroFormDto);
 	}
 
-	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping(value = "/registroFarmacologo", method = RequestMethod.POST)
 	public void registroFarmacologo(@RequestBody FarmacologoFormDto farmacologoFormDto) {
 		registroServices.crearFarmacologo(farmacologoFormDto);
 	}
 
-	@PreAuthorize("hasRole('ADMINISTRADOR')")
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping(value = "/registroLaboratorista", method = RequestMethod.POST)
 	public void registroFarmacologo(@RequestBody LaboratoristaFormDto laboratoristaFormDto) {
 		registroServices.crearLaboratorista(laboratoristaFormDto);

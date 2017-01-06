@@ -98,7 +98,7 @@ public class LaboratorioServices {
 	}
 
 	// Crear el resultado de analisis de paciente
-	@Auditable(actionType = AuditingActionTypeEnum.CREAR_RESULTADO)
+	// @Auditable(actionType = AuditingActionTypeEnum.CREAR_RESULTADO)
 	public void crearResultado(MultipartFile[] files, ResultadoFormDto resultadoFormDto) {
 
 		ResultadoEntity resultadoEntity = new ResultadoEntity();

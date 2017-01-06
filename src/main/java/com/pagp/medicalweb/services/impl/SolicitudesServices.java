@@ -98,7 +98,7 @@ public class SolicitudesServices {
 		return diagnosticoFormDto;
 	}
 
-	@Auditable(actionType = AuditingActionTypeEnum.CREAR_RECETA)
+	// @Auditable(actionType = AuditingActionTypeEnum.CREAR_RECETA)
 	public RecetaFormDto crearReceta(RecetaFormDto recetaFormDto) {
 		RecetaEntity recetaEntity = new RecetaEntity();
 		recetaEntity.setComentarios(recetaFormDto.getComentarios());
