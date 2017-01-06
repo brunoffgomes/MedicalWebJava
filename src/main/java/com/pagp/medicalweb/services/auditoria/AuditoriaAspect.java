@@ -40,6 +40,8 @@ public class AuditoriaAspect {
 				break;
 		}
 
+		logger.info("Creando registro de actividad");
+
 		RegistroEntity registroEntity = new RegistroEntity();
 		registroEntity.setIdUsuario(auth.getId());
 		registroEntity.setTipo_evento(actionType);
@@ -47,6 +49,7 @@ public class AuditoriaAspect {
 		registroEntity.setIdPaciente(idPaciente);
 
 		auditoriaDao.crearRegistro(registroEntity);
+
 		logger.info(actionType);
 	}
 

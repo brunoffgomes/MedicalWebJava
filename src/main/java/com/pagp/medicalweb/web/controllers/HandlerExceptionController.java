@@ -13,14 +13,14 @@ public class HandlerExceptionController {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorFormDto> exceptionHandler(Exception ex) {
-		ErrorFormDto error = new ErrorFormDto("Please contact your administrator");
+		ErrorFormDto error = new ErrorFormDto("Hubo un error interno, contacta al administrador del sistema.");
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)
 	public ResponseEntity<ErrorFormDto> exceptionAccessDeniedException(AccessDeniedException ex) {
-		ErrorFormDto error = new ErrorFormDto("Accesos denegado");
+		ErrorFormDto error = new ErrorFormDto("Acceso denegado");
 		error.setErrorCode(HttpStatus.FORBIDDEN.value());
 		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.FORBIDDEN);
 	}

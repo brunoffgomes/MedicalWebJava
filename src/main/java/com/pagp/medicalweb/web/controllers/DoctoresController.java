@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +12,7 @@ import com.pagp.medicalweb.db.entity.DoctorEntity;
 import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.services.impl.DoctoresServices;
+import com.pagp.medicalweb.web.core.AuthenticationFacade;
 import com.pagp.medicalweb.web.core.dto.AuthenticatedUser;
 
 @RestController
@@ -21,6 +21,9 @@ public class DoctoresController {
 
 	@Autowired
 	private DoctoresServices doctoresServices;
+
+	@Autowired
+	private AuthenticationFacade authenticationFacade;
 
 	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping("/{idEntidad}")
@@ -31,8 +34,7 @@ public class DoctoresController {
 	@PreAuthorize("hasRole('DOCTOR')")
 	@RequestMapping("/obtenerConsultas/{idEntidad}")
 	List<ConsultaEntity> obtenerConsultas(@PathVariable int idEntidad) {
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
+		AuthenticatedUser user = authenticationFacade.getAuthentication();
 		return doctoresServices.obtenerConsultas(user.getIdEntidad());
 	}
 
@@ -45,8 +47,7 @@ public class DoctoresController {
 	// @PreAuthorize("hasRole('DOCTOR')")
 	@RequestMapping("/diagnosticos")
 	List<DiagnosticoEntity> diagnosticos() {
-		AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal();
+		AuthenticatedUser user = authenticationFacade.getAuthentication();
 		return doctoresServices.obtenerDiagnosticos(user.getId());
 	}
 

@@ -8,7 +8,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 		
-	<context:component-scan base-package="com.pagp.medicalweb.web.core"/>
+	<context:component-scan base-package="com.pagp.medicalweb"/>
 		
 	<bean id="appProperties"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

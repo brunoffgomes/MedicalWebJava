@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,34 +20,33 @@ import org.springframework.stereotype.Component;
 import com.pagp.medicalweb.web.core.dto.JwtAuthenticationToken;
 import com.pagp.medicalweb.web.core.exceptions.JwtTokenMissingException;
 
-
 @Component("jwtAuthenticationFilter")
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-	
+	private Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+
 	public JwtAuthenticationFilter() {
 		super("/**");
 	}
 
-	
+	@Override
 	@Autowired
 	@Qualifier("authenticationManager")
 	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
 		super.setAuthenticationManager(authenticationManager);
 	}
-	
+
 	@Autowired
 	@Qualifier("jwtAuthenticationFailureHandler")
 	public void setAuthenticationFailureHandler(JwtAuthenticationFailureHandler jwtAuthenticationFailureHandler) {
 		super.setAuthenticationFailureHandler(jwtAuthenticationFailureHandler);
 	};
-	
+
 	@Autowired
 	@Qualifier("jwtAuthenticationSuccessHandler")
 	public void setAuthenticationSuccessHandler(JwtAuthenticationSuccessHandler jwtAuthenticationSuccessHandler) {
 		super.setAuthenticationSuccessHandler(jwtAuthenticationSuccessHandler);
 	};
-
 
 	@Override
 	protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {
@@ -59,8 +60,13 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 		String header = request.getHeader("Authorization");
 
 		if (header == null || !header.startsWith("Bearer ")) {
+
+			logger.error("Error no se encontro token de acceso");
+
 			throw new JwtTokenMissingException("No JWT token found in request headers");
 		}
+
+		logger.info("Obteniendo usuario del token");
 
 		String authToken = header.substring(7);
 
@@ -73,10 +79,6 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		super.successfulAuthentication(request, response, chain, authResult);
-
-		// As this authentication is in HTTP header, after success we need to
-		// continue the request normally
-		// and return the response as if the resource was not secured at all
 		chain.doFilter(request, response);
 	}
 }
