@@ -73,6 +73,7 @@ public class SolicitudesServices {
 		solicitudEntity.setEstatus(solicitudFormDto.getEstatus().toString());
 		solicitudEntity.setImpresion(solicitudFormDto.getImpresion());
 		solicitudEntity.setTipo_solicitud(solicitudFormDto.getTipo_solicitud().toString());
+		solicitudEntity.setFecha(solicitudEntity.getFecha());
 
 		solicitudesDao.crearSolicitud(solicitudEntity);
 

@@ -8,6 +8,14 @@
  			from solicitudes s  left join pacientes  p on p.idPaciente = s.idPaciente
 			where s.tipo_solicitud =  'ANALISIS'  and estatus = 'ABIERTA' and  p.idEntidad = #{value}  
 		</select>
+		
+
+		<select id="getLaboratoristasByEntidad" resultMap="LaboratoristaEntity" parameterType="int">
+			SELECT lab.*, us.*
+				 FROM laboratoristas 
+				left join usuario us on us.id_usuario = lab.idLaboratorista 
+				WHERE idEntidad = #{value}
+		</select>
 	
 		<resultMap id="consultaResult" type="ConsultaEntity"  autoMapping="true">
 			  <association property="paciente" resultMap="pacienteResult" >

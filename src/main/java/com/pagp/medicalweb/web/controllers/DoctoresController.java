@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pagp.medicalweb.db.entity.DoctorEntity;
+import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.services.impl.DoctoresServices;
@@ -26,9 +27,15 @@ public class DoctoresController {
 	private AuthenticationFacade authenticationFacade;
 
 	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
-	@RequestMapping("/{idEntidad}")
-	List<DoctorEntity> obtenerDoctores(@PathVariable int idEntidad) {
-		return doctoresServices.obtenerDoctores(idEntidad);
+	@RequestMapping
+	List<DoctorEntity> obtenerDoctores() {
+		return doctoresServices.obtenerDoctores(authenticationFacade.getAuthentication().getIdEntidad());
+	}
+
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
+	@RequestMapping("/enfermeros")
+	List<EnfermeroEntity> obtenerEnfermeros() {
+		return doctoresServices.getEnfermerosByEntidad(authenticationFacade.getAuthentication().getIdEntidad());
 	}
 
 	@PreAuthorize("hasRole('DOCTOR')")

@@ -4,9 +4,15 @@
 <mapper namespace="com.pagp.medicalweb.db.mappers.DoctorDb">
 
 	<select id="getDoctoresByEntidad" resultType="DoctorEntity" parameterType="int" >
-		SELECT doc.*,  us.nombre
-		 FROM doctores doc 
+		SELECT doc.*, us.nombre FROM doctores doc 
 		left join usuario us on us.id_usuario = doc.idDoctor 
+		WHERE idEntidad = #{value}
+	</select>
+
+
+	<select id="getEnfermerosByEntidad" resultMap="EnfermeroEntity" parameterType="int">
+		SELECT enf.*, us.*  FROM enfermeros  enf		
+		left join usuario us on us.id_usuario = enf.idEnfermero 
 		WHERE idEntidad = #{value}
 	</select>
 

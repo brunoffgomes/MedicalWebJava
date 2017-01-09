@@ -23,6 +23,10 @@ public class EntidadesDao {
 		return db.obtenerEntidades(idAdministrador);
 	}
 
+	public EntidadEntity obtenerEntidad(int idEntidad) {
+		return db.obtenerEntidad(idEntidad);
+	}
+
 	public List<EntidadEntity> obtenerEntidades() {
 		return db.obtenerEntidadesAll();
 	}

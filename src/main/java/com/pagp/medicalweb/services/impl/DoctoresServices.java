@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pagp.medicalweb.dao.DoctoresDao;
 import com.pagp.medicalweb.db.entity.DoctorEntity;
+import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 
@@ -20,6 +21,10 @@ public class DoctoresServices {
 
 	public List<DoctorEntity> obtenerDoctores(int idEntidad) {
 		return doctoresDao.getDoctoresByEntidad(idEntidad);
+	}
+
+	public List<EnfermeroEntity> getEnfermerosByEntidad(int idEntidad) {
+		return doctoresDao.getEnfermerosByEntidad(idEntidad);
 	}
 
 	public DoctorEntity obtenerDoctor(int idDoctor) {

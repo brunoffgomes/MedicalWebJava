@@ -12,6 +12,7 @@ import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.services.impl.PacientesServices;
 import com.pagp.medicalweb.web.core.AuthenticationFacade;
 import com.pagp.medicalweb.web.core.dto.AuthenticatedUser;
+import com.pagp.medicalweb.web.dto.solicitud.SolicitudFormDto;
 
 @RestController
 @RequestMapping("/api/pacientes")
@@ -34,6 +35,12 @@ public class PacientesController {
 	@RequestMapping("/{idPaciente}")
 	PacienteEntity getPaciente(@PathVariable int idPaciente) {
 		return pacientesServices.obtenerPaciente(idPaciente);
+	}
+
+	@PreAuthorize("hasRole('ENFERMERO')")
+	@RequestMapping("/historial/{idPaciente}")
+	List<SolicitudFormDto> getHistorialPaciente(@PathVariable int idPaciente) {
+		return pacientesServices.getSolicitudes(idPaciente);
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.pagp.medicalweb.db.entity;
 
-public class DoctorEntity extends UsuarioEntity {
+public class DoctorEntity extends UserDataEntity {
 
 	private int idDoctor;
 	private String especialidad;

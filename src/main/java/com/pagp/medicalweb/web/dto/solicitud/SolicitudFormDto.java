@@ -1,5 +1,7 @@
 package com.pagp.medicalweb.web.dto.solicitud;
 
+import java.util.Date;
+
 import com.pagp.medicalweb.services.auditoria.AuditingTargetPaciente;
 import com.pagp.medicalweb.web.enums.EstatusSolicitudEnum;
 import com.pagp.medicalweb.web.enums.TipoSolicitudEnum;
@@ -13,6 +15,7 @@ public class SolicitudFormDto {
 	private String descripcion;
 	private String impresion;
 	private EstatusSolicitudEnum estatus = EstatusSolicitudEnum.ABIERTA;
+	private Date fecha = new Date();
 
 	public int getIdSolicitud() {
 		return idSolicitud;
@@ -60,6 +63,18 @@ public class SolicitudFormDto {
 
 	public void setEstatus(EstatusSolicitudEnum estatus) {
 		this.estatus = estatus;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 }

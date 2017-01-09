@@ -1,5 +1,7 @@
 package com.pagp.medicalweb.db.entity.receta;
 
+import java.util.Date;
+
 public class SolicitudEntity {
 
 	private int idSolicitud;
@@ -8,6 +10,7 @@ public class SolicitudEntity {
 	private String descripcion;
 	private String impresion;
 	private String estatus;
+	private Date fecha;
 
 	public int getIdSolicitud() {
 		return idSolicitud;
@@ -55,6 +58,14 @@ public class SolicitudEntity {
 
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 }

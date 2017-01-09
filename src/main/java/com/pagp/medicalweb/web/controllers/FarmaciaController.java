@@ -1,5 +1,6 @@
 package com.pagp.medicalweb.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.MedicamentoEntity;
 import com.pagp.medicalweb.services.impl.FarmaciaServices;
 import com.pagp.medicalweb.web.core.AuthenticationFacade;
@@ -47,5 +49,11 @@ public class FarmaciaController {
 	@RequestMapping(value = "", method = RequestMethod.PUT)
 	public MedicamentoEntity actualizarMedicamento(@RequestBody MedicamentoEntity medicamentoEntity) {
 		return farmaciaServices.actulizarMedicamento(medicamentoEntity);
+	}
+
+	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
+	@RequestMapping("/farmacologos")
+	List<FarmacologoEntity> obtenerFarmacologos() {
+		return new ArrayList<>();
 	}
 }

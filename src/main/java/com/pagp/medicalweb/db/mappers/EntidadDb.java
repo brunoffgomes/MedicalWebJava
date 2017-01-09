@@ -19,6 +19,8 @@ public interface EntidadDb {
 
 	List<EntidadEntity> obtenerEntidadesAll();
 
+	EntidadEntity obtenerEntidad(int idEntidad);
+
 	List<DetalleModuloEntity> obtenerModulosEntidadActuales(int idEntidad);
 
 	List<DetalleModuloEntity> obtenerModulosEntidadActivos(int idEntidad);

@@ -12,7 +12,6 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
@@ -26,11 +25,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.pagp.medicalweb">
-		<context:include-filter type="aspectj"
-		expression="com.pagp.medicalweb.services.auditoria.AuditoriaAspect" />
-	</context:component-scan>
-		
+	
 	<cors>
 		<mapping path="/**" allowed-methods="*" allow-credentials="true"/>
 	</cors>
@@ -41,6 +36,15 @@
 			<beans:value>classpath:application.properties</beans:value>
 		</beans:property>
 	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<context:component-scan base-package="com.pagp.medicalweb">
+		<context:include-filter type="aspectj"
+		expression="com.pagp.medicalweb.services.auditoria.AuditoriaAspect" />
+	</context:component-scan>
+		
+	
 	
 	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	  <beans:property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -70,9 +74,5 @@
 	</beans:bean>
 	
 	<aop:aspectj-autoproxy/>   
-	
-	<beans:bean id="multipartResolver"
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-        
-        
+	        
 </beans:beans>

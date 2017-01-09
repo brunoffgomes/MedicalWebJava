@@ -24,7 +24,7 @@ public class MiPerfilController {
 	@RequestMapping
 	public MiPerfilEntity obtenerMiPerfil() {
 		AuthenticatedUser user = authenticationFacade.getAuthentication();
-		return miPerfilServices.obtenerPerfilUsuario(user.getId());
+		return miPerfilServices.obtenerPerfilUsuario(user);
 	}
 
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)

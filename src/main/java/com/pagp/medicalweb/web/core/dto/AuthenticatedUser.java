@@ -16,11 +16,11 @@ public class AuthenticatedUser implements UserDetails {
 	private final int id;
 	private final String username;
 	private final String token;
-	private final int idEntidad;
+	private final Integer idEntidad;
 	private final Collection<? extends GrantedAuthority> authorities;
 
 	public AuthenticatedUser(int id, String username, String token, Collection<? extends GrantedAuthority> authorities,
-			int idEntidad) {
+			Integer idEntidad) {
 		this.id = id;
 		this.username = username;
 		this.token = token;
@@ -76,7 +76,7 @@ public class AuthenticatedUser implements UserDetails {
 		return null;
 	}
 
-	public int getIdEntidad() {
+	public Integer getIdEntidad() {
 		return idEntidad;
 	}
 

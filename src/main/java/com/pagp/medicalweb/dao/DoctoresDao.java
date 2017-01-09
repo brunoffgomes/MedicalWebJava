@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pagp.medicalweb.db.entity.DoctorEntity;
+import com.pagp.medicalweb.db.entity.EnfermeroEntity;
 import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.DiagnosticoEntity;
 import com.pagp.medicalweb.db.mappers.DoctorDb;
@@ -16,8 +17,12 @@ public class DoctoresDao {
 	@Autowired
 	private DoctorDb db;
 
-	public List<DoctorEntity> getDoctoresByEntidad(int idEntidad) {		
+	public List<DoctorEntity> getDoctoresByEntidad(int idEntidad) {
 		return db.getDoctoresByEntidad(idEntidad);
+	}
+
+	public List<EnfermeroEntity> getEnfermerosByEntidad(int idEntidad) {
+		return db.getEnfermerosByEntidad(idEntidad);
 	}
 
 	public DoctorEntity getDoctor(int idDoctor) {
@@ -31,7 +36,6 @@ public class DoctoresDao {
 	public ConsultaEntity obtenerConsulta(int idSolicitud) {
 		return db.getConsulta(idSolicitud);
 	}
-	
 
 	public List<DiagnosticoEntity> obtenerDiagnosticos(int idDoctor) {
 		return db.getDiagnosticos(idDoctor);

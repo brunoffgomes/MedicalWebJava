@@ -1,0 +1,62 @@
+package com.pagp.medicalweb.db.entity;
+
+import java.util.Date;
+
+public class UserDataEntity {
+
+	private String nombre;
+	private String apPaterno;
+	private String apMaterno;
+	private String email;
+	private String tipo;
+	private Date fechaNacimiento;
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApPaterno() {
+		return apPaterno;
+	}
+
+	public void setApPaterno(String apPaterno) {
+		this.apPaterno = apPaterno;
+	}
+
+	public String getApMaterno() {
+		return apMaterno;
+	}
+
+	public void setApMaterno(String apMaterno) {
+		this.apMaterno = apMaterno;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+}
