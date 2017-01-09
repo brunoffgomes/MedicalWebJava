@@ -75,7 +75,7 @@ public class AuthServices {
 
 				// Si el tipo de usuario no es administrador
 				if (!TipoUsuarioEnum.ADMINISTRADOR.equals(tipoUsuarioEnum)
-						|| !TipoUsuarioEnum.SUPERADMINISTRADOR.equals(tipoUsuarioEnum)) {
+						&& !TipoUsuarioEnum.SUPERADMINISTRADOR.equals(tipoUsuarioEnum)) {
 
 					int idEntidad = obtenerIdEntidad(idUsuario, tipoUsuarioEnum);
 					jwtUserDto.setIdEntidad(idEntidad);

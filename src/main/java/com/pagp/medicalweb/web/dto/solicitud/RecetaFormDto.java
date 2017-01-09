@@ -11,6 +11,9 @@ public class RecetaFormDto {
 	private int idReceta;
 	@AuditingTargetPaciente
 	private int idPaciente;
+	private String comentarios;
+	private List<MedicamentoRecetaFormDto> medicamentos = new ArrayList<>();
+	private EstatusSolicitudEnum estatus = EstatusSolicitudEnum.ABIERTA;
 
 	public int getIdPaciente() {
 		return idPaciente;
@@ -19,10 +22,6 @@ public class RecetaFormDto {
 	public void setIdPaciente(int idPaciente) {
 		this.idPaciente = idPaciente;
 	}
-
-	private String comentarios;
-	private List<MedicamentoRecetaFormDto> medicamentos = new ArrayList<>();
-	private EstatusSolicitudEnum estatus = EstatusSolicitudEnum.ABIERTA;
 
 	public int getIdReceta() {
 		return idReceta;

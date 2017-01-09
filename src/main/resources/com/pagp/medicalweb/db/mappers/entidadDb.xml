@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pagp.medicalweb.db.mappers.EntidadDb">
 
-
-	<select id="obtenerEntidadesAll" resultType="EntidadEntity"  >
+	<select id="obtenerEntidadesAll"  resultType="EntidadEntity"  >
 		SELECT * FROM entidades 
 	</select>
 
-	<select id="obtenerEntidades" resultType="EntidadEntity" parameterType="int" >
+	<select id="obtenerEntidades"  resultType="EntidadEntity"  parameterType="int" >
 			SELECT * FROM entidades WHERE idAdministrador = #{value}
 	</select>
 	

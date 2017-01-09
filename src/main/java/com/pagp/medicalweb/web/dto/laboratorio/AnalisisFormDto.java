@@ -64,4 +64,12 @@ public class AnalisisFormDto {
 	public void setMuestras(List<MuestraFormDto> muestras) {
 		this.muestras = muestras;
 	}
+
+	public int getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
 }

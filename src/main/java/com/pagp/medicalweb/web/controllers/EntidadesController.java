@@ -27,7 +27,7 @@ public class EntidadesController {
 
 	@PreAuthorize("hasRole('ADMINISTRADOR')")
 	@RequestMapping("/administrador")
-	List<EntidadEntity> obtenerEntidades(@PathVariable int idAdministrador) {
+	List<EntidadEntity> obtenerEntidadesAdministrador() {
 		AuthenticatedUser user = authenticationFacade.getAuthentication();
 		return entidadesServices.obtenerEntidades(user.getId());
 	}
