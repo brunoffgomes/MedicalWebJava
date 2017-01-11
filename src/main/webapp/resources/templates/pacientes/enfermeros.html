@@ -12,16 +12,12 @@
                 <thead>
                   <tr>
                     <th> Nombre</th>
-                    <th> Especialidad</th>
-                    <th> Subespecialidad</th>
                     <th> Cedula</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr ng-repeat="enfermero in vm.enfermeros" style="color:black;">
                     <td>{{enfermero.nombre}}</td>
-                    <td>{{enfermero.especialidad}}</td>
-                    <td>{{enfermero.sub_especialidad}}</td>
                     <td>{{enfermero.cedula_profesional}}</td>
                   </tr>
                 </tbody>

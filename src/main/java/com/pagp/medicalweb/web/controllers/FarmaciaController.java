@@ -1,6 +1,5 @@
 package com.pagp.medicalweb.web.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +52,8 @@ public class FarmaciaController {
 
 	@PreAuthorize("hasRole('ADMINISTRADOR_CE')")
 	@RequestMapping("/farmacologos")
-	List<FarmacologoEntity> obtenerFarmacologos() {
-		return new ArrayList<>();
+	public List<FarmacologoEntity> obtenerFarmacologos() {
+		AuthenticatedUser usuario = authenticationFacade.getAuthentication();
+		return farmaciaServices.obtenerFarmacologosByEntidad(usuario.getIdEntidad());
 	}
 }

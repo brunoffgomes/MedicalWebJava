@@ -1,6 +1,6 @@
 package com.pagp.medicalweb.db.entity;
 
-public class FarmacologoEntity {
+public class FarmacologoEntity extends UsuarioEntity {
 
 	private int idFarmacologo;
 	private String cedula_profesional;

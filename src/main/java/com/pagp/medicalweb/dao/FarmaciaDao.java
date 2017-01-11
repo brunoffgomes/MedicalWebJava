@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.MedicamentoEntity;
 import com.pagp.medicalweb.db.mappers.FarmaciaDb;
 
@@ -35,4 +36,9 @@ public class FarmaciaDao {
 	public MedicamentoEntity obtenerMedicamento(int idMedicamento) {
 		return db.obtenerMedicamento(idMedicamento);
 	}
+
+	public List<FarmacologoEntity> obtenerFarmacologosByEntidad(int idEntidad) {
+		return db.getFarmacologosByEntidad(idEntidad);
+	}
+
 }

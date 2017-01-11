@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pagp.medicalweb.dao.FarmaciaDao;
+import com.pagp.medicalweb.db.entity.FarmacologoEntity;
 import com.pagp.medicalweb.db.entity.MedicamentoEntity;
 
 @Service
@@ -32,6 +33,10 @@ public class FarmaciaServices {
 	public MedicamentoEntity actulizarMedicamento(MedicamentoEntity medicamentoEntity) {
 		farmaciaDao.actulizarMedicamento(medicamentoEntity);
 		return medicamentoEntity;
+	}
+
+	public List<FarmacologoEntity> obtenerFarmacologosByEntidad(int idEntidad) {
+		return farmaciaDao.obtenerFarmacologosByEntidad(idEntidad);
 	}
 
 }

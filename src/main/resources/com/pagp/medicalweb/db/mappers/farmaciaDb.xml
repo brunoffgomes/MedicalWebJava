@@ -7,8 +7,8 @@
 		SELECT * FROM medicamento WHERE idEntidad = #{value}
 	</select>
 	
-	<select id="getLaboratoristasByEntidad"  resultType="LaboratoristaEntity" parameterType="int">
-			SELECT far.*, us.*  FROM farmacologos far
+	<select id="getFarmacologosByEntidad"  resultType="FarmacologoEntity"  parameterType="int">
+			SELECT far.*,  us.*  FROM farmacologos far
 			left join usuario us on us.id_usuario = far.idFarmacologo 
 			WHERE idEntidad = #{value}
 	</select>
