@@ -10,6 +10,6 @@ public interface MiPerfilDb {
 
 	EntidadEntity obtenerEntidad(int idEntidad);
 
-	void cambiarPassword(CambiarPasswordEntity cambiarPasswordFormDto);
+	int cambiarPassword(CambiarPasswordEntity cambiarPasswordFormDto);
 
 }

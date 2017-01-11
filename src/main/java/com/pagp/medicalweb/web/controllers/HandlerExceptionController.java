@@ -8,6 +8,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.pagp.medicalweb.services.exceptions.UserDataException;
 import com.pagp.medicalweb.web.dto.ErrorFormDto;
 
 @ControllerAdvice
@@ -21,6 +22,13 @@ public class HandlerExceptionController {
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		logger.error("Error -->", ex);
 		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(UserDataException.class)
+	public ResponseEntity<ErrorFormDto> exceptionHandler(UserDataException ex) {
+		ErrorFormDto error = new ErrorFormDto(ex.getMessage());
+		error.setErrorCode(HttpStatus.BAD_REQUEST.value());
+		return new ResponseEntity<ErrorFormDto>(error, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)

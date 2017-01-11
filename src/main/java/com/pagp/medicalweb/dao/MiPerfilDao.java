@@ -17,8 +17,8 @@ public class MiPerfilDao {
 		return db.obtenerPerfilUsuario(idUsuario);
 	}
 
-	public void cambiarPassword(CambiarPasswordEntity cambiarPasswordEntity) {
-		db.cambiarPassword(cambiarPasswordEntity);
+	public int cambiarPassword(CambiarPasswordEntity cambiarPasswordEntity) {
+		return db.cambiarPassword(cambiarPasswordEntity);
 	}
 
 }
