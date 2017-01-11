@@ -3,12 +3,15 @@ package com.pagp.medicalweb.db.entity.receta;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pagp.medicalweb.db.entity.DoctorEntity;
+
 public class RecetaEntity {
 
 	private int idReceta;
 	private String comentarios;
 	private String estatus;
 	private PacienteEntity paciente;
+	private DoctorEntity doctor;
 	private List<MedicamentoRecetaEntity> medicamentos = new ArrayList<>();
 
 	public int getIdReceta() {
@@ -49,6 +52,14 @@ public class RecetaEntity {
 
 	public void setMedicamentos(List<MedicamentoRecetaEntity> medicamentos) {
 		this.medicamentos = medicamentos;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
 	}
 
 }

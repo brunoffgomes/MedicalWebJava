@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-
 <!DOCTYPE html>
 <html ng-app="medicalWeb">
   <head>
@@ -16,6 +15,7 @@
     <link href="/css/loading-bar.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="/assets/medicalweb.ico">
+    <title>{{ title }}</title>
   </head>
   <body>
     <header ng-controller="NavBarController as navCtrl">
@@ -36,9 +36,8 @@
               <li><a href="" ng-href="{{modulo.path}}"> {{modulo.text}}</a></li>
             </ul>
             <ul ng-if="navCtrl.logged" class="nav navbar-nav navbar-right">
-              <li><a href="#/miPerfil" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
-              	<i class="fa fa-user fa-fw"></i>{{miperfil.email}}
-              </a></li>
+              <li><a href="#/miPerfil" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-user fa-fw"></i>{{miperfil.email}} </a></li>
+              <li ng-if="miperfil.entidad"><a><i class="fa fa-h-square fa-fw"></i>{{miperfil.entidad.nombre}} </a></li>
               <li><a href="" ng-click="navCtrl.logout()" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-sign-out fa-fw"></i>Cerrar Sesion</a></li>
             </ul>
           </div>
@@ -65,6 +64,8 @@
     <script src="/js/angular-aria.min.js"></script>
     <script src="/js/angular-material.min.js"></script>
     <script src="/js/loading-bar.min.js"></script>
+    <script src="/js/ui-bootstrap.min.js"></script>
+    <script src="/js/ui-bootstrap-tpls.min.js"></script>
     <script src="/assets/js/custom.js"></script>
     <script src="/js/app.js">   </script>
     <script src="/js/app.constants.js"></script>
@@ -103,6 +104,7 @@
     <script src="/js/resultados.controller.js"></script>
     <script src="/js/detalleentidad.controller.js"></script>
     <script src="/js/navbar.controller.js"></script>
+    <script src="/js/historial.controller.js"></script>
     <script src="/js/app.routes.js"></script>
   </body>
 </html>

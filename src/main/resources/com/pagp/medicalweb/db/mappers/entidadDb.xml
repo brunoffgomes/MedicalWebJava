@@ -84,15 +84,20 @@
 	 	 
 	 	 <select id="getRecetas" resultMap="recetaResult" parameterType="int" >
 				SELECT r.*, 
-						p.idPaciente as paciente_idPaciente,
-						p.nombre as paciente_nombre,
-			 			p.apellido_paterno as paciente_apellido_paterno ,
-			 			p.apellido_materno as paciente_apellido_materno   FROM recetas r
-				left join diagnostico  d on r.idReceta = d.idDiagnostico
-				left join solicitudes s on s.idSolicitud = d.idDiagnostico
-				left join pacientes  p on p.idPaciente = s.idPaciente
-				 WHERE p.idEntidad = #{value} 	and r.estatus = 'ABIERTA'
-		</select>
+								p.idPaciente as paciente_idPaciente,
+								p.nombre as paciente_nombre,
+					 			p.apellido_paterno as paciente_apellido_paterno ,
+					 			p.apellido_materno as paciente_apellido_materno,
+					 			doc.nombre as doc_nombre,
+					 			doc.apPaterno as doc_apellido_paterno ,
+					 			doc.apMaterno  as doc_apellido_materno  
+					 		FROM recetas r
+						left join diagnostico  d on r.idReceta = d.idDiagnostico
+						left join solicitudes s on s.idSolicitud = d.idDiagnostico
+						left join pacientes  p on p.idPaciente = s.idPaciente
+						inner join usuario doc on doc.id_usuario = d.idDoctor
+						 WHERE p.idEntidad =  #{value}  and r.estatus = 'ABIERTA'
+			</select>
 	 	 
 	 	  <select id="getReceta" resultMap="recetaMedicamentoResult" parameterType="int" >
 			SELECT  r.*, 
@@ -109,6 +114,7 @@
 	 	 <resultMap id="recetaResult" type="RecetaEntity"  autoMapping="true">
 	 	 		   	<id property="idReceta" column="idReceta"/>
 			  	<association property="paciente" resultMap="pacienteResult"  columnPrefix="paciente_" ></association>
+			  	<association property="doctor" resultMap="doctorResult"   columnPrefix="doc_" ></association>
 		</resultMap>
 	
 		 <resultMap id="recetaMedicamentoResult" type="RecetaEntity" autoMapping="true">
@@ -128,5 +134,12 @@
 			<result column="apellido_paterno" property="apellido_paterno"/>
 			<result column="apellido_materno" property="apellido_materno"/>		
 		</resultMap>
+		
+		 <resultMap id="doctorResult"  type="DoctorEntity" autoMapping="true">
+			<result column="nombre" property="nombre"/>
+			<result column="apellido_paterno" property="apPaterno"/>
+			<result column="apellido_materno" property="apMaterno"/>		
+		</resultMap>
+		
 	 	 
 </mapper>

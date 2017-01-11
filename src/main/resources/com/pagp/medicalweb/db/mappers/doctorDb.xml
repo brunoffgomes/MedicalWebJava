@@ -10,7 +10,7 @@
 	</select>
 
 
-	<select id="getEnfermerosByEntidad" resultMap="EnfermeroEntity" parameterType="int">
+	<select id="getEnfermerosByEntidad" resultType="EnfermeroEntity" parameterType="int">
 		SELECT enf.*, us.*  FROM enfermeros  enf		
 		left join usuario us on us.id_usuario = enf.idEnfermero 
 		WHERE idEntidad = #{value}

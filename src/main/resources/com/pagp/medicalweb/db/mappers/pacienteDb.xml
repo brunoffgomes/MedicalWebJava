@@ -12,10 +12,7 @@
 		</select>
 	
 	<select id="getSolicitudes" resultType="SolicitudEntity" parameterType="int">
-		SELECT *  FROM solicitudes  WHERE WHERE idPaciente = #{value}
+			SELECT *  FROM solicitudes  WHERE  idPaciente = #{value}
 	</select>
-	
-
-	
 	
 </mapper>

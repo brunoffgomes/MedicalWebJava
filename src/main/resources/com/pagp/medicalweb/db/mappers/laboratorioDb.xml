@@ -10,7 +10,7 @@
 		</select>
 		
 
-		<select id="getLaboratoristasByEntidad" resultMap="LaboratoristaEntity" parameterType="int">
+		<select id="getLaboratoristasByEntidad" resultType="LaboratoristaEntity" parameterType="int">
 			SELECT lab.*, us.*
 				 FROM laboratoristas 
 				left join usuario us on us.id_usuario = lab.idLaboratorista 

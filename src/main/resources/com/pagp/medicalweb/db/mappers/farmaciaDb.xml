@@ -7,11 +7,10 @@
 		SELECT * FROM medicamento WHERE idEntidad = #{value}
 	</select>
 	
-	<select id="getLaboratoristasByEntidad" resultMap="LaboratoristaEntity" parameterType="int">
-		SELECT far.*, us.*
-		FROM farmacologos far
-		left join usuario us on us.id_usuario = far.idFarmacologo 
-		WHERE idEntidad = #{value}
+	<select id="getLaboratoristasByEntidad"  resultType="LaboratoristaEntity" parameterType="int">
+			SELECT far.*, us.*  FROM farmacologos far
+			left join usuario us on us.id_usuario = far.idFarmacologo 
+			WHERE idEntidad = #{value}
 	</select>
 	
 	
