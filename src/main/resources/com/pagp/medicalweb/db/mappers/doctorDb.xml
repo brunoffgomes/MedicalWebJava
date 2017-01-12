@@ -33,6 +33,7 @@
 	
 	<select id="getConsulta" resultMap="consultaResult"  parameterType="int" >
  			SELECT s.*,
+ 			p.idPaciente as paciente_idPaciente, 
  			p.nombre as paciente_nombre,
  			p.apellido_paterno as paciente_apellido_paterno ,
  			p.apellido_materno as paciente_apellido_materno  
@@ -53,6 +54,7 @@
 	
 	<select id="getDiagnostico" resultMap="diagnosticoResult" parameterType="int" >
 			SELECT d.*, 
+			p.idPaciente as paciente_idPaciente, 
 			p.nombre as paciente_nombre,
  			p.apellido_paterno as paciente_apellido_paterno ,
  			p.apellido_materno as paciente_apellido_materno  
