@@ -11,8 +11,31 @@
 			SELECT * FROM pacientes WHERE idPaciente = #{value}
 		</select>
 	
-	<select id="getSolicitudes" resultType="SolicitudEntity" parameterType="int">
-			SELECT *  FROM solicitudes  WHERE  idPaciente = #{value}
+	<select id="getSolicitudes" resultMap="historialResult" parameterType="int">
+			SELECT   s.*, u.* 
+			FROM solicitudes s 
+			LEFT JOIN diagnostico d on d.idDiagnostico = s.idSolicitud
+			LEFT JOIN analisis a on a.idAnalisis = s.idSolicitud
+			LEFT JOIN usuario u on u.id_usuario = 
+				CASE 
+				WHEN s.tipo_solicitud = 'CONSULTA'  THEN d.idDoctor 
+				ELSE a.idLaboratorista 
+			END  
+			WHERE  idPaciente = #{value}
 	</select>
 	
+	
+	<resultMap id="historialResult" type="ConsultaEntity" autoMapping="true" >
+		<id property="idSolicitud" column="idSolicitud"/>
+		<association property="atendio" resultMap="atendioResult"></association>
+	</resultMap>
+	
+	<resultMap id="atendioResult" type="UserDataEntity">
+		<id property="id_usuario" column="id_usuario" />
+		<result column="nombre" property="nombre"/>
+		<result column="apPaterno" property="apPaterno"/>
+		<result column="apMaterno" property="apMaterno"/>		
+	</resultMap>
+	
+		
 </mapper>

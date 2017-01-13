@@ -12,7 +12,7 @@
 
 		<select id="getLaboratoristasByEntidad" resultType="LaboratoristaEntity" parameterType="int">
 			SELECT lab.*, us.*
-				 FROM laboratoristas 
+				 FROM laboratoristas lab
 				left join usuario us on us.id_usuario = lab.idLaboratorista 
 				WHERE idEntidad = #{value}
 		</select>

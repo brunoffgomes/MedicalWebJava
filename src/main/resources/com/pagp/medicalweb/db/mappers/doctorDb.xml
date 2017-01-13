@@ -66,13 +66,15 @@
 
 
 	<resultMap id="diagnosticoResult" type="DiagnosticoEntity" autoMapping="true">
+		<id column="idDiagnostico" property="idDiagnostico"  />
 		  <association property="paciente" resultMap="pacienteResult" >
 		  </association>
 	</resultMap>
 	
 
 	<resultMap id="consultaResult" type="ConsultaEntity" autoMapping="true">
-		  <association property="paciente" resultMap="pacienteResult" >
+		<id column="idSolicitud" property="idSolicitud"  />
+		<association property="paciente" resultMap="pacienteResult" >
 		  </association>
 	</resultMap>
 	

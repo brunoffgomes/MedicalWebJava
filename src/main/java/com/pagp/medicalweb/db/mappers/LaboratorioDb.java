@@ -2,6 +2,7 @@ package com.pagp.medicalweb.db.mappers;
 
 import java.util.List;
 
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.AnalisisEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.EvidenciaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.MuestraEntity;
@@ -25,5 +26,6 @@ public interface LaboratorioDb {
 	void actualizarAnalisis(AnalisisEntity analisisEntity);
 
 	AnalisisEntity obtenerAnalisisPorId(int idAnalisis);
-
+	
+	List<LaboratoristaEntity> getLaboratoristasByEntidad(int idEntidad);
 }

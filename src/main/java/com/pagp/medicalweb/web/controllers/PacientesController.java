@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
 import com.pagp.medicalweb.services.impl.PacientesServices;
 import com.pagp.medicalweb.web.core.AuthenticationFacade;
 import com.pagp.medicalweb.web.core.dto.AuthenticatedUser;
-import com.pagp.medicalweb.web.dto.solicitud.SolicitudFormDto;
 
 @RestController
 @RequestMapping("/api/pacientes")
@@ -39,7 +39,7 @@ public class PacientesController {
 
 	@PreAuthorize("hasRole('ENFERMERO')")
 	@RequestMapping("/historial/{idPaciente}")
-	List<SolicitudFormDto> getHistorialPaciente(@PathVariable int idPaciente) {
+	List<ConsultaEntity> getHistorialPaciente(@PathVariable int idPaciente) {
 		return pacientesServices.getSolicitudes(idPaciente);
 	}
 

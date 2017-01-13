@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.AnalisisEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.EvidenciaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.MuestraEntity;
@@ -52,6 +53,10 @@ public class LaboratorioDao {
 
 	public AnalisisEntity obtenerAnalisisPorId(int idAnalisis) {
 		return laboratorioDb.obtenerAnalisisPorId(idAnalisis);
+	}
+	
+	public List<LaboratoristaEntity> obtenerLaboratorista(int idEntidad){
+		return laboratorioDb.getLaboratoristasByEntidad(idEntidad);
 	}
 
 }

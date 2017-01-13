@@ -4,12 +4,22 @@ import java.util.Date;
 
 public class UserDataEntity {
 
+	private int id_usuario;
 	private String nombre;
 	private String apPaterno;
 	private String apMaterno;
 	private String email;
 	private String tipo;
 	private Date fechaNacimiento;
+
+	
+	public int getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
 	public String getNombre() {
 		return nombre;

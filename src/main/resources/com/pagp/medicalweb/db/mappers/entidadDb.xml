@@ -88,6 +88,7 @@
 								p.nombre as paciente_nombre,
 					 			p.apellido_paterno as paciente_apellido_paterno ,
 					 			p.apellido_materno as paciente_apellido_materno,
+					 			doc.idDoctor as doc_idDoctor,
 					 			doc.nombre as doc_nombre,
 					 			doc.apPaterno as doc_apellido_paterno ,
 					 			doc.apMaterno  as doc_apellido_materno  
@@ -112,7 +113,7 @@
 		</select>
 	 
 	 	 <resultMap id="recetaResult" type="RecetaEntity"  autoMapping="true">
-	 	 		   	<id property="idReceta" column="idReceta"/>
+	 	 		   <id property="idReceta" column="idReceta"/>
 			  	<association property="paciente" resultMap="pacienteResult"  columnPrefix="paciente_" ></association>
 			  	<association property="doctor" resultMap="doctorResult"   columnPrefix="doc_" ></association>
 		</resultMap>
@@ -136,6 +137,7 @@
 		</resultMap>
 		
 		 <resultMap id="doctorResult"  type="DoctorEntity" autoMapping="true">
+		 	<id property="idDoctor" column="idDoctor"/>
 			<result column="nombre" property="nombre"/>
 			<result column="apellido_paterno" property="apPaterno"/>
 			<result column="apellido_materno" property="apMaterno"/>		

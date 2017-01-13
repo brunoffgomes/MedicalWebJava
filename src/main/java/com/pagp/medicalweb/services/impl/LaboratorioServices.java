@@ -18,6 +18,7 @@ import com.microsoft.azure.storage.blob.CloudBlockBlob;
 import com.pagp.medicalweb.dao.DoctoresDao;
 import com.pagp.medicalweb.dao.LaboratorioDao;
 import com.pagp.medicalweb.dao.SolicitudesDao;
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.AnalisisEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.EvidenciaEntity;
 import com.pagp.medicalweb.db.entity.laboratorio.MuestraEntity;
@@ -55,6 +56,10 @@ public class LaboratorioServices {
 	@Autowired
 	private SolicitudesDao solicitudesDao;
 
+	public List<LaboratoristaEntity> obtenerLaboratorista(int idEntidad){
+		return laboratorioDao.obtenerLaboratorista(idEntidad);
+	}
+	
 	public List<ConsultaEntity> obtenerAnalisis(int idEntidad) {
 		// Se obtienen solicitudes tipo analisis
 		return laboratorioDao.obtenerConsultas(idEntidad);

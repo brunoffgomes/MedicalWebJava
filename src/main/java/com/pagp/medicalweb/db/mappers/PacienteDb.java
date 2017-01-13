@@ -2,8 +2,8 @@ package com.pagp.medicalweb.db.mappers;
 
 import java.util.List;
 
+import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.db.entity.receta.PacienteEntity;
-import com.pagp.medicalweb.db.entity.receta.SolicitudEntity;
 
 public interface PacienteDb {
 
@@ -11,6 +11,6 @@ public interface PacienteDb {
 
 	PacienteEntity getPaciente(int idPaciente);
 
-	List<SolicitudEntity> getSolicitudes(int idPaciente);
+	List<ConsultaEntity> getSolicitudes(int idPaciente);
 
 }

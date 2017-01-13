@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pagp.medicalweb.db.entity.LaboratoristaEntity;
 import com.pagp.medicalweb.db.entity.receta.ConsultaEntity;
 import com.pagp.medicalweb.services.impl.LaboratorioServices;
 import com.pagp.medicalweb.web.core.AuthenticationFacade;
@@ -38,6 +39,13 @@ public class LaboratorioController {
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {
 		dataBinder.registerCustomEditor(ResultadoFormDto.class, new ResultadoFormDtoDataBinder());
+	}
+	
+	@RequestMapping("/laboratoristas")
+	@ResponseBody
+	public List<LaboratoristaEntity> obtenerLaboratorista(){
+		AuthenticatedUser user = authenticationFacade.getAuthentication();
+		return laboratorioServices.obtenerLaboratorista(user.getIdEntidad());
 	}
 
 	// Mapeo de url GET "/api/laboratorio"
@@ -76,4 +84,5 @@ public class LaboratorioController {
 		laboratorioServices.crearResultado(files, resultado);
 	}
 
+	
 }

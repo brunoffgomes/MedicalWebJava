@@ -71,6 +71,10 @@ angular.module("app.routes",["ngRoute"])
       templateUrl: '/templates/pacientes/enfermeros.html', title :"Enfermeros"
     , controller : "EnfermerosController", controllerAs:"vm"
   })
+  .when("/laboratoristas", {
+      templateUrl: '/templates/laboratorio/laboratoristas.html', title :"Laboratoristas"
+    , controller : "LaboratoristasController", controllerAs:"vm"
+  })
   .when("/registroEnfermero", {
       templateUrl: '/templates/shared/enfermero.html', title :"Enfermero"
     , controller : "EnfermeroController", controllerAs:"vm"
@@ -114,6 +118,10 @@ angular.module("app.routes",["ngRoute"])
   .when("/historial/:idPaciente", {
         templateUrl: '/templates/pacientes/historial.html',
         title :"Historial paciente", controller : "HistorialController", controllerAs:"vm"
+  })
+  .when("/cambiarPassword", {
+        templateUrl: '/templates/shared/cambiarPassword.html',
+        title :"Cambiar Password", controller : "CambiarPasswordController", controllerAs:"vm"
   })
   .otherwise("/");
 });

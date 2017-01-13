@@ -3,6 +3,7 @@ angular
     .module('app.constants', [])
     .constant("constants", {
         "url": "/api",
+        //"url": "http://medicalweb.azurewebsites.net/api",
         "ROLE_ADMINISTRADOR":[
           {path:"#home",text:"Inicio"},
           {path:"#registroClinica",text:"Registro Clinica"},
@@ -23,7 +24,7 @@ angular
           {path:"#doctores",text:"Doctores",modulo:"CONSULTA"},
           {path:"#farmacologos",text:"Farmacologos",modulo:"FARMACIA"},
           {path:"#enfermeros",text:"Enfermeros",modulo:"CONSULTA"},
-          {path:"#registroLaboratorista",text:"Laboratorista",modulo:"LABORATORIO"}
+          {path:"#laboratoristas",text:"Laboratorista",modulo:"LABORATORIO"}
         ],
         "ROLE_FARMACIA":[
           {path:"#home",text:"Inicio"},
@@ -68,6 +69,9 @@ angular
        sexoEnum : [
          {"id":1, "text":"Femenino"},
          {"id":2, "text":"Masculino"},
+       ],
+       religionesEnum: [
+         "Catolica", "Protestantes y evangelicas", "Biblicas diferentes a evangelicas","Otras"
        ],
        tipoEntidadEnum : [
         { value : 0, text :"Sanatorio" },
