@@ -88,7 +88,7 @@
 								p.nombre as paciente_nombre,
 					 			p.apellido_paterno as paciente_apellido_paterno ,
 					 			p.apellido_materno as paciente_apellido_materno,
-					 			doc.idDoctor as doc_idDoctor,
+					 			doc.id_usuario as doc_idDoctor,
 					 			doc.nombre as doc_nombre,
 					 			doc.apPaterno as doc_apellido_paterno ,
 					 			doc.apMaterno  as doc_apellido_materno  
